@@ -2,22 +2,31 @@
 #include <windows.h>
 #include <fstream>
 #include <string>
+#include <vector>
 using namespace std;
+
 struct Pipe {
     string Name;
     float length;
     int diametr;
     bool status;
 };
+
 struct CS {
     string Name;
     int number_work;
     int number_work_online;
     string class_cs;
 };
-void Addpipe(Pipe& pipe) {
+
+vector<Pipe> pipes;
+vector<CS> css;
+
+void Addpipe() {
     system("cls");
     cout << "=== Добавление трубы ===" << endl;
+
+    Pipe pipe;
 
     cin.clear();
     cin.ignore(1000, '\n');
@@ -53,12 +62,15 @@ void Addpipe(Pipe& pipe) {
     }
     pipe.status = (repairStatus == 1);
 
+    pipes.push_back(pipe);
     cin.ignore(1000, '\n');
 }
 
-void Addcs(CS& cs) {
+void Addcs() {
     system("cls");
     cout << "=== Добавление КС ===" << endl;
+
+    CS cs;
 
     cin.clear();
     cin.ignore(1000, '\n');
@@ -104,48 +116,52 @@ void Addcs(CS& cs) {
         cout << "Ошибка! Класс станции не может быть пустым. Введите снова: ";
         getline(cin, cs.class_cs);
     }
+
+    css.push_back(cs);
 }
 
-void ViewAllObjects(const Pipe& pipe, const CS& cs) {
+void ViewAllObjects() {
     system("cls");
     cout << "Просмотр всех объектов" << endl;
-
-    if (pipe.Name.empty()) {
-        cout << "Труба: не добавлена\n";
+    if (pipes.empty()) {
+        cout << "Трубы: не добавлены\n";
     }
     else {
-        cout << "Труба" << endl;
-        cout << "Название: " << pipe.Name << endl;
-        cout << "Длина: " << pipe.length << " км" << endl;
-        cout << "Диаметр: " << pipe.diametr << " мм" << endl;
-        cout << "Статус: " << (pipe.status ? "В ремонте" : "Работает") << endl;
+        cout << "=== Трубы ===" << endl;
+        for (int i = 0; i < pipes.size(); i++) {
+            cout << "Труба #" << (i + 1) << endl;
+            cout << "  Название: " << pipes[i].Name << endl;
+            cout << "  Длина: " << pipes[i].length << " км" << endl;
+            cout << "  Диаметр: " << pipes[i].diametr << " мм" << endl;
+            cout << "  Статус: " << (pipes[i].status ? "В ремонте" : "Работает") << endl;
+            cout << endl;
+        }
     }
-
-    cout << endl;
-
-
-    if (cs.Name.empty()) {
-        cout << "КС: не добавлена" << endl;
+    if (css.empty()) {
+        cout << "КС: не добавлены" << endl;
     }
     else {
-        cout << "Компрессорная станция" << endl;
-        cout << "Название: " << cs.Name << endl;
-        cout << "Всего цехов: " << cs.number_work << endl;
-        cout << "Цехов онлайн: " << cs.number_work_online << endl;
-        cout << "Класс: " << cs.class_cs << endl;
+        cout << "=== Компрессорные станции ===" << endl;
+        for (int i = 0; i < css.size(); i++) {
+            cout << "КС #" << (i + 1) << endl;
+            cout << "  Название: " << css[i].Name << endl;
+            cout << "  Всего цехов: " << css[i].number_work << endl;
+            cout << "  Цехов онлайн: " << css[i].number_work_online << endl;
+            cout << "  Класс: " << css[i].class_cs << endl;
+            cout << endl;
+        }
     }
-
 
     cout << "Нажмите Enter для продолжения...";
     cin.ignore(1000, '\n');
     while (cin.get() != '\n');
 }
 
-void EditPipe(Pipe& pipe) {
-    if (pipe.Name.empty()) {
+void EditPipe() {
+    if (pipes.empty()) {
         system("cls");
-        cout << "Ошибка: Труба не добавлена!" << endl;
-        cout << "Сначала добавьте трубу через меню." << endl;
+        cout << "Ошибка: Трубы не добавлены!" << endl;
+        cout << "Сначала добавьте трубы через меню." << endl;
         cout << "Нажмите Enter для продолжения...";
         cin.ignore(1000, '\n');
         while (cin.get() != '\n');
@@ -154,7 +170,31 @@ void EditPipe(Pipe& pipe) {
 
     system("cls");
     cout << "=== Редактирование трубы ===" << endl;
-    cout << "Текущие данные:" << endl;
+    cout << "Выберите трубу для редактирования:" << endl;
+
+    for (int i = 0; i < pipes.size(); i++) {
+        cout << (i + 1) << " - " << pipes[i].Name << " (длина: " << pipes[i].length << " км)" << endl;
+    }
+
+    cout << "0 - Вернуться в меню" << endl;
+    cout << "Выберите трубу: ";
+
+    int pipeChoice;
+    while (!(cin >> pipeChoice) || pipeChoice < 0 || pipeChoice > pipes.size() || cin.peek() != '\n') {
+        cout << "Ошибка! Введите число от 0 до " << pipes.size() << ": ";
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+
+    if (pipeChoice == 0) {
+        return;
+    }
+
+    Pipe& pipe = pipes[pipeChoice - 1];
+
+    system("cls");
+    cout << "=== Редактирование трубы ===" << endl;
+    cout << "Текущие данные трубы '" << pipe.Name << "':" << endl;
     cout << "1. Название: " << pipe.Name << endl;
     cout << "2. Длина: " << pipe.length << " км" << endl;
     cout << "3. Диаметр: " << pipe.diametr << " мм" << endl;
@@ -194,10 +234,10 @@ void EditPipe(Pipe& pipe) {
     while (cin.get() != '\n');
 }
 
-void EditCS(CS& cs) {
-    if (cs.Name.empty()) {
+void EditCS() {
+    if (css.empty()) {
         system("cls");
-        cout << "Ошибка: КС не добавлена!" << endl;
+        cout << "Ошибка: КС не добавлены!" << endl;
         cout << "Сначала добавьте КС через меню." << endl;
         cout << "Нажмите Enter для продолжения...";
         cin.ignore(1000, '\n');
@@ -207,7 +247,31 @@ void EditCS(CS& cs) {
 
     system("cls");
     cout << "=== Редактирование компрессорной станции ===" << endl;
-    cout << "Текущие данные:" << endl;
+    cout << "Выберите КС для редактирования:" << endl;
+
+    for (int i = 0; i < css.size(); i++) {
+        cout << (i + 1) << " - " << css[i].Name << " (цехов: " << css[i].number_work_online << "/" << css[i].number_work << ")" << endl;
+    }
+
+    cout << "0 - Вернуться в меню" << endl;
+    cout << "Выберите КС: ";
+
+    int csChoice;
+    while (!(cin >> csChoice) || csChoice < 0 || csChoice > css.size() || cin.peek() != '\n') {
+        cout << "Ошибка! Введите число от 0 до " << css.size() << ": ";
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+
+    if (csChoice == 0) {
+        return;
+    }
+
+    CS& cs = css[csChoice - 1];
+
+    system("cls");
+    cout << "=== Редактирование компрессорной станции ===" << endl;
+    cout << "Текущие данные КС '" << cs.Name << "':" << endl;
     cout << "1. Название: " << cs.Name << endl;
     cout << "2. Всего цехов: " << cs.number_work << endl;
     cout << "3. Работающих цехов: " << cs.number_work_online << endl;
@@ -274,8 +338,8 @@ void EditCS(CS& cs) {
     while (cin.get() != '\n');
 }
 
-void SaveToFile(const Pipe& pipe, const CS& cs) {
-    ofstream outFile("data.txt", ios::binary);
+void SaveToFile() {
+    ofstream outFile("data.txt");
 
     if (!outFile.is_open()) {
         cout << "Ошибка: Не удалось создать или открыть файл!" << endl;
@@ -288,28 +352,33 @@ void SaveToFile(const Pipe& pipe, const CS& cs) {
     outFile << "=== Pipeline system data ===" << endl;
     outFile << "======================================" << endl << endl;
 
-    if (!pipe.Name.empty()) {
-        outFile << "Pipe" << endl;
-        outFile << "Name: " << pipe.Name << endl;
-        outFile << "Length: " << pipe.length << " km" << endl;
-        outFile << "Diameter: " << pipe.diametr << " mm" << endl;
-        outFile << "Status: " << (pipe.status ? "Not worked" : "Worked") << endl;
-        outFile << endl;
+    if (pipes.empty()) {
+        outFile << "Трубы: не добавлены" << endl << endl;
     }
     else {
-        outFile << "Труба: не добавлена" << endl << endl;
+        outFile << "Трубы (всего: " << pipes.size() << "):" << endl;
+        for (int i = 0; i < pipes.size(); i++) {
+            outFile << "Труба #" << (i + 1) << endl;
+            outFile << "  Name: " << pipes[i].Name << endl;
+            outFile << "  Length: " << pipes[i].length << " km" << endl;
+            outFile << "  Diameter: " << pipes[i].diametr << " mm" << endl;
+            outFile << "  Status: " << (pipes[i].status ? "Not worked" : "Worked") << endl;
+            outFile << endl;
+        }
     }
-
-    if (!cs.Name.empty()) {
-        outFile << "CS" << endl;
-        outFile << "Name: " << cs.Name << endl;
-        outFile << "all workshop: " << cs.number_work << endl;
-        outFile << "Online workshop: " << cs.number_work_online << endl;
-        outFile << "Class: " << cs.class_cs << endl;
-        outFile << endl;
+    if (css.empty()) {
+        outFile << "КС: не добавлены" << endl << endl;
     }
     else {
-        outFile << "CS not found" << endl << endl;
+        outFile << "Компрессорные станции (всего: " << css.size() << "):" << endl;
+        for (int i = 0; i < css.size(); i++) {
+            outFile << "КС #" << (i + 1) << endl;
+            outFile << "  Name: " << css[i].Name << endl;
+            outFile << "  all workshop: " << css[i].number_work << endl;
+            outFile << "  Online workshop: " << css[i].number_work_online << endl;
+            outFile << "  Class: " << css[i].class_cs << endl;
+            outFile << endl;
+        }
     }
 
     outFile.close();
@@ -320,7 +389,7 @@ void SaveToFile(const Pipe& pipe, const CS& cs) {
     while (cin.get() != '\n');
 }
 
-void LoadFromFile(Pipe& pipe, CS& cs) {
+void LoadFromFile() {
     ifstream inFile("data.txt");
 
     if (!inFile.is_open()) {
@@ -331,68 +400,86 @@ void LoadFromFile(Pipe& pipe, CS& cs) {
         return;
     }
 
+    pipes.clear();
+    css.clear();
+
     string line;
     bool readingPipe = false;
     bool readingCS = false;
-
-    pipe = Pipe();
-    cs = CS();
+    Pipe currentPipe;
+    CS currentCS;
 
     while (getline(inFile, line)) {
-        if (line.find("Pipe") != string::npos) {
+        if (line.find("Труба #") != string::npos) {
+            if (currentPipe.Name != "") {
+                pipes.push_back(currentPipe);
+            }
+            currentPipe = Pipe();
             readingPipe = true;
             readingCS = false;
             continue;
         }
-        else if (line.find("CS") != string::npos) {
+        else if (line.find("КС #") != string::npos) {
+            if (currentCS.Name != "") {
+                css.push_back(currentCS);
+            }
+            currentCS = CS();
             readingPipe = false;
             readingCS = true;
             continue;
         }
         else if (line.find("Name: ") != string::npos) {
             if (readingPipe) {
-                pipe.Name = line.substr(6);
+                currentPipe.Name = line.substr(7);
             }
-            if (readingCS) {
-                cs.Name = line.substr(6);
+            else if (readingCS) {
+                currentCS.Name = line.substr(7);
             }
         }
         else if (line.find("Length: ") != string::npos) {
             size_t pos = line.find(" km");
             if (pos != string::npos) {
-                string lengthStr = line.substr(8, pos - 8);
-                pipe.length = stof(lengthStr);
+                string lengthStr = line.substr(10, pos - 10);
+                currentPipe.length = stof(lengthStr);
             }
         }
         else if (line.find("Diameter: ") != string::npos) {
             size_t pos = line.find(" mm");
             if (pos != string::npos) {
-                string diamStr = line.substr(10, pos - 10);
-                pipe.diametr = stoi(diamStr);
+                string diamStr = line.substr(12, pos - 12);
+                currentPipe.diametr = stoi(diamStr);
             }
         }
         else if (line.find("Status: ") != string::npos) {
             if (line.find("Not worked") != string::npos) {
-                pipe.status = true;
+                currentPipe.status = true;
             }
             else if (line.find("Worked") != string::npos) {
-                pipe.status = false;
+                currentPipe.status = false;
             }
         }
         else if (line.find("all workshop: ") != string::npos) {
-            cs.number_work = stoi(line.substr(14));
+            currentCS.number_work = stoi(line.substr(16));
         }
         else if (line.find("Online workshop: ") != string::npos) {
-            cs.number_work_online = stoi(line.substr(17));
+            currentCS.number_work_online = stoi(line.substr(19));
         }
         else if (line.find("Class: ") != string::npos) {
-            cs.class_cs = line.substr(7);
+            currentCS.class_cs = line.substr(9);
         }
+    }
+
+    if (currentPipe.Name != "") {
+        pipes.push_back(currentPipe);
+    }
+    if (currentCS.Name != "") {
+        css.push_back(currentCS);
     }
 
     inFile.close();
 
     cout << "Данные успешно загружены из файла 'data.txt'!" << endl;
+    cout << "Загружено труб: " << pipes.size() << ", КС: " << css.size() << endl;
     cout << "Нажмите Enter для продолжения...";
     cin.ignore(1000, '\n');
     while (cin.get() != '\n');
@@ -401,55 +488,62 @@ void LoadFromFile(Pipe& pipe, CS& cs) {
 void ShowMenu() {
     int options;
     bool flag = true;
-    Pipe pipe;
-    CS cs;
+
     while (flag) {
         system("cls");
-        cout << "Пример меню:\n 1. Добавить трубу\n 2. Добавить КС\n 3. Просмотр всех объектов\n 4. Редактировать трубу\n 5. Редактировать КС\n 6. Сохранить\n 7. Загрузить\n 0. Выход\n";
+        cout << "Меню управления трубопроводной системой:" << endl;
+        cout << "1. Добавить трубу" << endl;
+        cout << "2. Добавить КС" << endl;
+        cout << "3. Просмотр всех объектов" << endl;
+        cout << "4. Редактировать трубу" << endl;
+        cout << "5. Редактировать КС" << endl;
+        cout << "6. Сохранить" << endl;
+        cout << "7. Загрузить" << endl;
+        cout << "0. Выход" << endl;
+        cout << "Выберите действие: ";
+
         while (!(cin >> options) || options < 0 || options > 7 || cin.peek() != '\n') {
             cout << "Ошибка! Введите число от 0 до 7: ";
             cin.clear();
             while (cin.get() != '\n');
         }
+
         switch (options) {
         case 0:
-            cout << "Complete";
+            cout << "Завершение работы..." << endl;
             flag = false;
             break;
         case 1:
-            Addpipe(pipe);
-            cout << "Труба успешно добавлена!" << endl;
+            Addpipe();
+            cout << "Труба успешно добавлена! Всего труб: " << pipes.size() << endl;
             break;
         case 2:
-            Addcs(cs);
-            cout << "КС успешно добавлена!" << endl;
+            Addcs();
+            cout << "КС успешно добавлена! Всего КС: " << css.size() << endl;
             break;
-
         case 3:
-            ViewAllObjects(pipe, cs);
+            ViewAllObjects();
             break;
         case 4:
-            EditPipe(pipe);
+            EditPipe();
             break;
         case 5:
-            EditCS(cs);
+            EditCS();
             break;
         case 6:
-            SaveToFile(pipe, cs);
+            SaveToFile();
             break;
         case 7:
-            LoadFromFile(pipe, cs);
+            LoadFromFile();
             break;
         }
-        cin.ignore(1000, '\n');
     }
 }
 
-int main()
-{
+int main() {
     setlocale(LC_ALL, "Russian");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     ShowMenu();
-
+    return 0;
 }
