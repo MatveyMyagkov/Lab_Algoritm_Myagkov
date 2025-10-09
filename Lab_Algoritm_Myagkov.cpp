@@ -501,11 +501,24 @@ void EditCS() {
     while (cin.get() != '\n');
 }
 
-void SaveToFile() {
-    ofstream outFile("data.txt");
+void SaveToCustomFile() {
+    system("cls");
+    cout << "=== Сохранение в файл ===" << endl;
+
+    string filename;
+    cout << "Введите название файла для сохранения (например: data.txt): ";
+    cin.ignore(1000, '\n');
+    getline(cin, filename);
+
+    while (filename.empty() || filename.find_first_not_of(' ') == string::npos) {
+        cout << "Ошибка! Имя файла не может быть пустым. Введите снова: ";
+        getline(cin, filename);
+    }
+
+    ofstream outFile(filename);
 
     if (!outFile.is_open()) {
-        cout << "Ошибка: Не удалось создать или открыть файл!" << endl;
+        cout << "Ошибка: Не удалось создать или открыть файл '" << filename << "'!" << endl;
         cout << "Нажмите Enter для продолжения...";
         cin.ignore(1000, '\n');
         while (cin.get() != '\n');
@@ -537,17 +550,31 @@ void SaveToFile() {
 
     outFile.close();
 
-    cout << "Данные сохранены в файл 'data.txt'!" << endl;
+    cout << "Данные успешно сохранены в файл '" << filename << "'!" << endl;
     cout << "Нажмите Enter для продолжения...";
     cin.ignore(1000, '\n');
     while (cin.get() != '\n');
 }
 
-void LoadFromFile() {
-    ifstream inFile("data.txt");
+void LoadFromCustomFile() {
+    system("cls");
+    cout << "=== Загрузка из файла ===" << endl;
+
+    string filename;
+    cout << "Введите название файла для загрузки (например: data.txt): ";
+    cin.ignore(1000, '\n');
+    getline(cin, filename);
+
+    while (filename.empty() || filename.find_first_not_of(' ') == string::npos) {
+        cout << "Ошибка! Имя файла не может быть пустым. Введите снова: ";
+        getline(cin, filename);
+    }
+
+    ifstream inFile(filename);
 
     if (!inFile.is_open()) {
-        cout << "Ошибка: Не удалось открыть файл 'data.txt'!" << endl;
+        cout << "Ошибка: Не удалось открыть файл '" << filename << "'!" << endl;
+        cout << "Проверьте правильность имени файла и его существование." << endl;
         cout << "Нажмите Enter для продолжения...";
         cin.ignore(1000, '\n');
         while (cin.get() != '\n');
@@ -725,8 +752,9 @@ void LoadFromFile() {
 
     inFile.close();
 
-    cout << "Данные успешно загружены из файла 'data.txt'!" << endl;
-    cout << "Загружено труб: " << pipes.size() << ", КС: " << css.size() << endl;
+    cout << "Данные успешно загружены из файла '" << filename << "'!" << endl;
+    cout << "Загружено труб: " << pipes.size() << ", КС: " << css.size()
+        << ", Всего в контейнере: " << container.size() << endl;
 
     for (int i = 0; i < css.size(); i++) {
         CS& cs = css[i];
@@ -741,6 +769,7 @@ void LoadFromFile() {
     cin.ignore(1000, '\n');
     while (cin.get() != '\n');
 }
+
 
 void RemoveAnyObjectByID() {
     system("cls");
@@ -887,10 +916,10 @@ void ShowMenu() {
             EditCS();
             break;
         case 6:
-            SaveToFile();
+            SaveToCustomFile();
             break;
         case 7:
-            LoadFromFile();
+            LoadFromCustomFile();
             break;
         case 8:
             RemoveAnyObjectByID();
