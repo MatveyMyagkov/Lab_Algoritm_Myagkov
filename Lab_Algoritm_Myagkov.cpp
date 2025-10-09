@@ -9,22 +9,30 @@ using namespace std;
 
 class Pipe {
 private:
+    int id;
     string name;
     float length;
     int diameter;
     bool status;
+    
 
 public:
-    Pipe() : name(""), length(0.0f), diameter(0), status(false) {}
+    Pipe() : id(0), name(""), length(0.0f), diameter(0), status(false) {}
 
-    Pipe(string n, float len, int diam, bool stat)
-        : name(n), length(len), diameter(diam), status(stat) {
+    Pipe(int(i), string n, float len, int diam, bool stat)
+        :id(i), name(n), length(len), diameter(diam), status(stat) {
     }
-
+    int getID() const { return id; }
     string getName() const { return name; }
     float getLength() const { return length; }
     int getDiameter() const { return diameter; }
     bool getStatus() const { return status; }
+
+    void display() const { cout << "Труба: " << name << " (ID: " << id << ")" << endl; }
+
+    void setID(const int& i) {
+        id = i;
+    }
 
     void setName(const string& n) {
         if (!n.empty() || n.find_first_not_of(' ') == string::npos) {
@@ -94,6 +102,7 @@ public:
         if (index != -1) {
             cout << "Труба #" << (index + 1) << endl;
         }
+        cout << "  (ID: " << id << ")" << endl;
         cout << "  Название: " << name << endl;
         cout << "  Длина: " << length << " км" << endl;
         cout << "  Диаметр: " << diameter << " мм" << endl;
@@ -105,6 +114,7 @@ public:
         if (index != -1) {
             outFile << "Труба #" << (index + 1) << endl;
         }
+        outFile << "  ID: " << id << endl;
         outFile << "  Name: " << name << endl;
         outFile << "  Length: " << length << " km" << endl;
         outFile << "  Diameter: " << diameter << " mm" << endl;
@@ -115,23 +125,29 @@ public:
 
 class CS {
 private:
+    int id;
     string name;
     int number_work;
     int number_work_online;
     string class_cs;
 
 public:
-    CS() : name(""), number_work(0), number_work_online(0), class_cs("") {}
+    CS() : id(0), name(""), number_work(0), number_work_online(0), class_cs("") {}
 
-    CS(string n, int num_work, int num_online, string cls)
-        : name(n), number_work(num_work), number_work_online(num_online), class_cs(cls) {
+    CS(int i, string n, int num_work, int num_online, string cls)
+        : id(i), name(n), number_work(num_work), number_work_online(num_online), class_cs(cls) {
     }
-
+    int getID() const { return id; }
     string getName() const { return name; }
     int getNumberWork() const { return number_work; }
     int getNumberWorkOnline() const { return number_work_online; }
     string getClassCS() const { return class_cs; }
 
+    void display() const { cout << "КС: " << name << " (ID: " << id << ")" << endl; }
+
+    void setID(const int& i) {
+        id = i;
+    }
     void setName(const string& n) {
         if (!n.empty() || n.find_first_not_of(' ') == string::npos) {
             name = n;
@@ -219,6 +235,7 @@ public:
         if (index != -1) {
             cout << "КС #" << (index + 1) << endl;
         }
+        cout << "  (ID: " << id << ")" << endl;
         cout << "  Название: " << name << endl;
         cout << "  Всего цехов: " << number_work << endl;
         cout << "  Цехов онлайн: " << number_work_online << endl;
@@ -230,6 +247,7 @@ public:
         if (index != -1) {
             outFile << "КС #" << (index + 1) << endl;
         }
+        outFile << "  ID: " << id << endl;
         outFile << "  Name: " << name << endl;
         outFile << "  all workshop: " << number_work << endl;
         outFile << "  Online workshop: " << number_work_online << endl;
@@ -249,6 +267,7 @@ void Addpipe() {
 
     Pipe pipe;
     pipe.inputFromConsole();
+    pipe.setID(container.size() + 1);
     pipes.push_back(pipe);
     container.push_back(pipe);
 }
@@ -259,6 +278,7 @@ void Addcs() {
 
     CS cs;
     cs.inputFromConsole();
+    cs.setID(container.size() + 1);
     css.push_back(cs);
     container.push_back(cs);
 }
@@ -284,6 +304,18 @@ void ViewAllObjects() {
         cout << "=== Компрессорные станции ===" << endl;
         for (int i = 0; i < css.size(); i++) {
             css[i].displayInfo(i);
+        }
+    }
+    if (container.empty()) {
+        cout << "Контейнер: не добавлены" << endl;
+    }
+    else {
+        cout << "=== Перебор контейнера ===" << endl;
+
+        for (const auto& obj : container) {
+            visit([](const auto& item) {
+                item.display();
+                }, obj);
         }
     }
 
@@ -524,15 +556,29 @@ void LoadFromFile() {
 
     pipes.clear();
     css.clear();
+    container.clear();
 
     string line;
     bool readingPipe = false;
     bool readingCS = false;
     Pipe currentPipe;
     CS currentCS;
-    int objectIndex = 0;
+
+    auto extractValue = [](const string& line, const string& marker) -> string {
+        size_t pos = line.find(marker);
+        if (pos != string::npos) {
+            string value = line.substr(pos + marker.length());
+            value.erase(0, value.find_first_not_of(" \t"));
+            value.erase(value.find_last_not_of(" \t") + 1);
+            return value;
+        }
+        return "";
+        };
 
     while (getline(inFile, line)) {
+        line.erase(0, line.find_first_not_of(" \t"));
+        line.erase(line.find_last_not_of(" \t") + 1);
+
         if (line.empty() || line.find("===") != string::npos ||
             line.find("======================================") != string::npos) {
             continue;
@@ -541,6 +587,7 @@ void LoadFromFile() {
         if (line.find("Труба #") != string::npos) {
             if (readingPipe && !currentPipe.getName().empty()) {
                 pipes.push_back(currentPipe);
+                container.push_back(currentPipe);
                 currentPipe = Pipe();
             }
             readingPipe = true;
@@ -551,6 +598,7 @@ void LoadFromFile() {
         if (line.find("КС #") != string::npos) {
             if (readingCS && !currentCS.getName().empty()) {
                 css.push_back(currentCS);
+                container.push_back(currentCS);
                 currentCS = CS();
             }
             readingPipe = false;
@@ -559,87 +607,108 @@ void LoadFromFile() {
         }
 
         if (readingPipe) {
-            if (line.find("Name: ") != string::npos) {
-                string name = line.substr(7);
-                if (!name.empty() && name.find_first_not_of(' ') != string::npos) {
-                    currentPipe.setName(name);
-                }
-            }
-            else if (line.find("Length: ") != string::npos) {
-                size_t pos = line.find(" km");
-                if (pos != string::npos) {
-                    string lengthStr = line.substr(10, pos - 10);
+            if (line.find("ID:") != string::npos) {
+                string value = extractValue(line, "ID:");
+                if (!value.empty()) {
                     try {
-                        float length = stof(lengthStr);
-                        if (length > 0) {
-                            currentPipe.setLength(length);
-                        }
+                        currentPipe.setID(stoi(value));
                     }
                     catch (const exception& e) {
-                        cout << "Ошибка при чтении длины трубы: " << e.what() << endl;
+                        cout << "Ошибка чтения ID трубы: " << e.what() << endl;
                     }
                 }
             }
-            else if (line.find("Diameter: ") != string::npos) {
-                size_t pos = line.find(" mm");
-                if (pos != string::npos) {
-                    string diamStr = line.substr(12, pos - 12);
+            else if (line.find("Name:") != string::npos) {
+                string value = extractValue(line, "Name:");
+                if (!value.empty()) {
+                    currentPipe.setName(value);
+                }
+            }
+            else if (line.find("Length:") != string::npos) {
+                string value = extractValue(line, "Length:");
+                size_t kmPos = value.find(" km");
+                if (kmPos != string::npos) {
+                    value = value.substr(0, kmPos);
+                }
+                if (!value.empty()) {
                     try {
-                        int diameter = stoi(diamStr);
-                        if (diameter > 0) {
-                            currentPipe.setDiameter(diameter);
-                        }
+                        currentPipe.setLength(stof(value));
                     }
                     catch (const exception& e) {
-                        cout << "Ошибка при чтении диаметра трубы: " << e.what() << endl;
+                        cout << "Ошибка чтения длины трубы: " << e.what() << endl;
                     }
                 }
             }
-            else if (line.find("Status: ") != string::npos) {
-                if (line.find("Not worked") != string::npos) {
+            else if (line.find("Diameter:") != string::npos) {
+                string value = extractValue(line, "Diameter:");
+                size_t mmPos = value.find(" mm");
+                if (mmPos != string::npos) {
+                    value = value.substr(0, mmPos);
+                }
+                if (!value.empty()) {
+                    try {
+                        currentPipe.setDiameter(stoi(value));
+                    }
+                    catch (const exception& e) {
+                        cout << "Ошибка чтения диаметра трубы: " << e.what() << endl;
+                    }
+                }
+            }
+            else if (line.find("Status:") != string::npos) {
+                string value = extractValue(line, "Status:");
+                if (value.find("Not worked") != string::npos) {
                     currentPipe.setStatus(true);
                 }
-                else if (line.find("Worked") != string::npos) {
+                else if (value.find("Worked") != string::npos) {
                     currentPipe.setStatus(false);
                 }
             }
         }
 
         if (readingCS) {
-            if (line.find("Name: ") != string::npos) {
-                string name = line.substr(7);
-                if (!name.empty() && name.find_first_not_of(' ') != string::npos) {
-                    currentCS.setName(name);
-                }
-            }
-            else if (line.find("all workshop: ") != string::npos) {
-                string numStr = line.substr(16);
-                try {
-                    int num = stoi(numStr);
-                    if (num > 0) {
-                        currentCS.setNumberWork(num);
+            if (line.find("ID:") != string::npos) {
+                string value = extractValue(line, "ID:");
+                if (!value.empty()) {
+                    try {
+                        currentCS.setID(stoi(value));
+                    }
+                    catch (const exception& e) {
+                        cout << "Ошибка чтения ID КС: " << e.what() << endl;
                     }
                 }
-                catch (const exception& e) {
-                    cout << "Ошибка при чтении количества цехов: " << e.what() << endl;
+            }
+            else if (line.find("Name:") != string::npos) {
+                string value = extractValue(line, "Name:");
+                if (!value.empty()) {
+                    currentCS.setName(value);
                 }
             }
-            else if (line.find("Online workshop: ") != string::npos) {
-                string numStr = line.substr(19);
-                try {
-                    int num = stoi(numStr);
-                    if (num >= 0) {
-                        currentCS.setNumberWorkOnline(num);
+            else if (line.find("all workshop:") != string::npos) {
+                string value = extractValue(line, "all workshop:");
+                if (!value.empty()) {
+                    try {
+                        currentCS.setNumberWork(stoi(value));
+                    }
+                    catch (const exception& e) {
+                        cout << "Ошибка чтения количества цехов: " << e.what() << endl;
                     }
                 }
-                catch (const exception& e) {
-                    cout << "Ошибка при чтении работающих цехов: " << e.what() << endl;
+            }
+            else if (line.find("Online workshop:") != string::npos) {
+                string value = extractValue(line, "Online workshop:");
+                if (!value.empty()) {
+                    try {
+                        currentCS.setNumberWorkOnline(stoi(value));
+                    }
+                    catch (const exception& e) {
+                        cout << "Ошибка чтения работающих цехов: " << e.what() << endl;
+                    }
                 }
             }
-            else if (line.find("Class: ") != string::npos) {
-                string cls = line.substr(9);
-                if (!cls.empty() && cls.find_first_not_of(' ') != string::npos) {
-                    currentCS.setClassCS(cls);
+            else if (line.find("Class:") != string::npos) {
+                string value = extractValue(line, "Class:");
+                if (!value.empty()) {
+                    currentCS.setClassCS(value);
                 }
             }
         }
@@ -647,9 +716,11 @@ void LoadFromFile() {
 
     if (!currentPipe.getName().empty()) {
         pipes.push_back(currentPipe);
+        container.push_back(currentPipe);
     }
     if (!currentCS.getName().empty()) {
         css.push_back(currentCS);
+        container.push_back(currentCS);
     }
 
     inFile.close();
@@ -661,11 +732,107 @@ void LoadFromFile() {
         CS& cs = css[i];
         if (cs.getNumberWorkOnline() > cs.getNumberWork()) {
             cout << "Предупреждение: У КС '" << cs.getName()
-                << "' количество работающих цехов (" << cs.getNumberWorkOnline()
-                << ") превышает общее количество цехов (" << cs.getNumberWork()
-                << "). Исправлено." << endl;
+                << "' исправлено количество работающих цехов." << endl;
             cs.setNumberWorkOnline(cs.getNumberWork());
         }
+    }
+
+    cout << "Нажмите Enter для продолжения...";
+    cin.ignore(1000, '\n');
+    while (cin.get() != '\n');
+}
+
+void RemoveAnyObjectByID() {
+    system("cls");
+    cout << "=== Удаление любого объекта по ID ===" << endl;
+
+    if (container.empty()) {
+        cout << "Ошибка: Объекты не добавлены!" << endl;
+        cout << "Нажмите Enter для продолжения...";
+        cin.ignore(1000, '\n');
+        while (cin.get() != '\n');
+        return;
+    }
+
+    cout << "Список всех объектов:" << endl;
+    for (const auto& obj : container) {
+        visit([](const auto& item) {
+            using T = decay_t<decltype(item)>;
+            if constexpr (is_same_v<T, Pipe>) {
+                cout << "[Труба] ID: " << item.getID() << " - " << item.getName() << endl;
+            }
+            else if constexpr (is_same_v<T, CS>) {
+                cout << "[КС] ID: " << item.getID() << " - " << item.getName() << endl;
+            }
+            }, obj);
+    }
+
+    cout << "\nВведите ID объекта для удаления: ";
+    int idToDelete;
+    while (!(cin >> idToDelete) || idToDelete <= 0 || cin.peek() != '\n') {
+        cout << "Ошибка! Введите положительное целое число: ";
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+
+    bool found = false;
+    string objectType = "";
+    string objectName = "";
+
+    for (auto it = container.begin(); it != container.end(); ) {
+        bool shouldDelete = false;
+
+        visit([idToDelete, &shouldDelete, &objectType, &objectName](auto& item) {
+            if (item.getID() == idToDelete) {
+                shouldDelete = true;
+                using T = decay_t<decltype(item)>;
+                if constexpr (is_same_v<T, Pipe>) {
+                    objectType = "Труба";
+                }
+                else if constexpr (is_same_v<T, CS>) {
+                    objectType = "КС";
+                }
+                objectName = item.getName();
+            }
+            }, *it);
+
+        if (shouldDelete) {
+            it = container.erase(it);
+            found = true;
+            break;
+        }
+        else {
+            ++it;
+        }
+    }
+
+    if (found) {
+        for (auto it = pipes.begin(); it != pipes.end(); ) {
+            if (it->getID() == idToDelete) {
+                it = pipes.erase(it);
+                break;
+            }
+            else {
+                ++it;
+            }
+        }
+
+        for (auto it = css.begin(); it != css.end(); ) {
+            if (it->getID() == idToDelete) {
+                it = css.erase(it);
+                break;
+            }
+            else {
+                ++it;
+            }
+        }
+
+        cout << objectType << " '" << objectName << "' с ID " << idToDelete << " успешно удалена!" << endl;
+        cout << "Осталось труб: " << pipes.size() << ", КС: " << css.size()
+            << ", объектов в контейнере: " << container.size() << endl;
+    }
+    else {
+        cout << "Объект с ID " << idToDelete << " не найден!" << endl;
     }
 
     cout << "Нажмите Enter для продолжения...";
@@ -687,11 +854,12 @@ void ShowMenu() {
         cout << "5. Редактировать КС" << endl;
         cout << "6. Сохранить" << endl;
         cout << "7. Загрузить" << endl;
+        cout << "8. Удалить объект по ID" << endl;
         cout << "0. Выход" << endl;
         cout << "Выберите действие: ";
 
-        while (!(cin >> options) || options < 0 || options > 7 || cin.peek() != '\n') {
-            cout << "Ошибка! Введите число от 0 до 7: ";
+        while (!(cin >> options) || options < 0 || options > 8 || cin.peek() != '\n') {
+            cout << "Ошибка! Введите число от 0 до 8: ";
             cin.clear();
             while (cin.get() != '\n');
         }
@@ -724,6 +892,8 @@ void ShowMenu() {
         case 7:
             LoadFromFile();
             break;
+        case 8:
+            RemoveAnyObjectByID();
         }
     }
 }
