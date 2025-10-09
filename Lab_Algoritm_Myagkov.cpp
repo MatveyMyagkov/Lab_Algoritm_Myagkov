@@ -9,6 +9,38 @@
 #include <sstream>
 using namespace std;
 
+class KeyboardLogger {
+private:
+	std::ofstream logFile;
+
+public:
+	KeyboardLogger(const std::string& filename = "keyboard_actions.log") {
+		logFile.open(filename);
+		if (!logFile.is_open()) {
+			std::cerr << "Cannot open log file!" << std::endl;
+		}
+	}
+
+	~KeyboardLogger() {
+		if (logFile.is_open()) {
+			logFile.close();
+		}
+	}
+
+	void log(const std::string& input) {
+		if (logFile.is_open() && !input.empty()) {
+			logFile << input << std::endl;
+			logFile.flush();
+		}
+	}
+};
+
+KeyboardLogger keyLogger;
+
+void logKeyboardInput(const string& input) {
+	keyLogger.log(input);
+}
+
 class Pipe {
 private:
 	int id;
@@ -67,13 +99,16 @@ public:
 		cin.ignore(1000, '\n');
 
 		cout << "Введите километровую отметку (Название трубы): ";
-		getline(cin, name);
+		string name_input;
+		getline(cin, name_input);
+		logKeyboardInput(name_input);
+		setName(name_input);
 
 		while (name.empty() || name.find_first_not_of(' ') == string::npos) {
 			cout << "Ошибка! Название не может быть пустым. Введите снова: ";
 			getline(cin, name);
 		}
-
+		
 		cout << "Введите длину трубы (км): ";
 		while (!(cin >> length) || length <= 0 || cin.peek() != '\n') {
 			cout << "Ошибка! Введите положительное число: ";
@@ -191,7 +226,10 @@ public:
 		cin.ignore(1000, '\n');
 
 		cout << "Введите название КС: ";
-		getline(cin, name);
+		string name_input;
+		getline(cin, name_input);
+		logKeyboardInput(name_input);
+		setName(name_input);
 
 		while (name.empty() || name.find_first_not_of(' ') == string::npos) {
 			cout << "Ошибка! Название не может быть пустым. Введите снова: ";
@@ -355,6 +393,7 @@ void EditPipe() {
 		cin.clear();
 		cin.ignore(1000, '\n');
 	}
+	logKeyboardInput(to_string(pipeChoice));
 
 	if (pipeChoice == 0) {
 		return;
@@ -430,6 +469,7 @@ void EditCS() {
 		cin.clear();
 		cin.ignore(1000, '\n');
 	}
+	logKeyboardInput(to_string(csChoice));
 
 	if (csChoice == 0) {
 		return;
@@ -511,6 +551,7 @@ void SaveToCustomFile() {
 	cout << "Введите название файла для сохранения (например: data.txt): ";
 	cin.ignore(1000, '\n');
 	getline(cin, filename);
+	logKeyboardInput(filename);
 
 	while (filename.empty() || filename.find_first_not_of(' ') == string::npos) {
 		cout << "Ошибка! Имя файла не может быть пустым. Введите снова: ";
@@ -566,6 +607,7 @@ void LoadFromCustomFile() {
 	cout << "Введите название файла для загрузки (например: data.txt): ";
 	cin.ignore(1000, '\n');
 	getline(cin, filename);
+	logKeyboardInput(filename);
 
 	while (filename.empty() || filename.find_first_not_of(' ') == string::npos) {
 		cout << "Ошибка! Имя файла не может быть пустым. Введите снова: ";
@@ -805,7 +847,7 @@ void RemoveAnyObjectByID() {
 		cin.clear();
 		cin.ignore(1000, '\n');
 	}
-
+	logKeyboardInput(to_string(idToDelete));
 	bool found = false;
 	string objectType = "";
 	string objectName = "";
@@ -895,6 +937,7 @@ void SearchCS() {
 	cout << "Введите название КС для поиска (или оставьте пустым для пропуска): ";
 	cin.ignore(1000, '\n');
 	getline(cin, searchName);
+	logKeyboardInput(searchName);
 
 	cout << "Фильтр по проценту незадействованных цехов:" << endl;
 	cout << "Введите минимальный процент незадействованных цехов (0-100) или -1 для пропуска: ";
@@ -904,6 +947,7 @@ void SearchCS() {
 		cin.clear();
 		cin.ignore(1000, '\n');
 	}
+	logKeyboardInput(to_string(minUnusedPercent));
 
 	vector<CS> results;
 
@@ -1035,6 +1079,7 @@ void SearchPipesWithBatchOperations() {
 	cout << "Введите название трубы для поиска (или оставьте пустым для пропуска): ";
 	cin.ignore(1000, '\n');
 	getline(cin, searchName);
+	logKeyboardInput(searchName);
 
 	cout << "Фильтр по статусу ремонта:" << endl;
 	cout << "0 - Только работающие трубы" << endl;
@@ -1047,6 +1092,7 @@ void SearchPipesWithBatchOperations() {
 		cin.clear();
 		cin.ignore(1000, '\n');
 	}
+	logKeyboardInput(to_string(repairStatus));
 
 	vector<Pipe> results;
 	vector<int> foundIDs;
@@ -1302,7 +1348,7 @@ void ShowMenu() {
 			cin.clear();
 			while (cin.get() != '\n');
 		}
-
+		logKeyboardInput(to_string(options));
 		switch (options) {
 		case 0:
 			cout << "Завершение работы..." << endl;
