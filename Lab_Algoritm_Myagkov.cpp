@@ -6,6 +6,7 @@
 #include <vector>
 #include <iomanip>
 #include <algorithm>
+#include <sstream>
 using namespace std;
 
 class Pipe {
@@ -876,79 +877,6 @@ string toLower(const string& str) {
 	return result;
 }
 
-void SearchPipes() {
-	system("cls");
-	cout << "=== Поиск труб по фильтрам ===" << endl;
-
-	if (pipes.empty()) {
-		cout << "Ошибка: Трубы не добавлены!" << endl;
-		cout << "Нажмите Enter для продолжения...";
-		cin.ignore(1000, '\n');
-		while (cin.get() != '\n');
-		return;
-	}
-
-	string searchName;
-	int repairStatus = -1;
-
-	cout << "Введите название трубы для поиска (или оставьте пустым для пропуска): ";
-	cin.ignore(1000, '\n');
-	getline(cin, searchName);
-
-	cout << "Фильтр по статусу ремонта:" << endl;
-	cout << "0 - Только работающие трубы" << endl;
-	cout << "1 - Только трубы в ремонте" << endl;
-	cout << "2 - Любой статус (пропустить фильтр)" << endl;
-	cout << "Выберите фильтр: ";
-
-	while (!(cin >> repairStatus) || repairStatus < 0 || repairStatus > 2 || cin.peek() != '\n') {
-		cout << "Ошибка! Введите число от 0 до 2: ";
-		cin.clear();
-		cin.ignore(1000, '\n');
-	}
-
-	vector<Pipe> results;
-
-	for (const auto& pipe : pipes) {
-		bool nameMatch = true;
-		bool statusMatch = true;
-
-		if (!searchName.empty()) {
-			string pipeNameLower = toLower(pipe.getName());
-			string searchNameLower = toLower(searchName);
-			if (pipeNameLower.find(searchNameLower) == string::npos) {
-				nameMatch = false;
-			}
-		}
-
-		if (repairStatus != 2) {
-			bool requiredStatus = (repairStatus == 1);
-			if (pipe.getStatus() != requiredStatus) {
-				statusMatch = false;
-			}
-		}
-
-		if (nameMatch && statusMatch) {
-			results.push_back(pipe);
-		}
-	}
-
-	if (results.empty()) {
-		cout << "Трубы по заданным критериям не найдены." << endl;
-	}
-	else {
-		cout << "=== Результаты поиска ===" << endl;
-		cout << "Найдено труб: " << results.size() << endl;
-		for (int i = 0; i < results.size(); i++) {
-			results[i].displayInfo(i);
-		}
-	}
-
-	cout << "Нажмите Enter для продолжения...";
-	cin.ignore(1000, '\n');
-	while (cin.get() != '\n');
-}
-
 void SearchCS() {
 	system("cls");
 	cout << "=== Поиск КС по фильтрам ===" << endl;
@@ -1026,7 +954,323 @@ void SearchCS() {
 			}
 			cout << endl;
 		}
+
 	}
+
+	cout << "Нажмите Enter для продолжения...";
+	cin.ignore(1000, '\n');
+	while (cin.get() != '\n');
+}
+
+// Функция для изменения статуса трубы по ID
+void ChangePipeStatusByID(int id, bool newStatus) {
+	for (auto& pipe : pipes) {
+		if (pipe.getID() == id) {
+			pipe.setStatus(newStatus);
+			break;
+		}
+	}
+
+	for (auto& obj : container) {
+		if (holds_alternative<Pipe>(obj)) {
+			Pipe& pipe = get<Pipe>(obj);
+			if (pipe.getID() == id) {
+				pipe.setStatus(newStatus);
+				break;
+			}
+		}
+	}
+}
+
+// Функция для пакетного изменения статуса труб
+void BatchChangePipeStatus(const vector<int>& pipeIDs, bool newStatus) {
+	for (int id : pipeIDs) {
+		ChangePipeStatusByID(id, newStatus);
+	}
+}
+
+// Функция для пакетного удаления труб
+void BatchDeletePipes(const vector<int>& pipeIDs) {
+	for (auto it = pipes.begin(); it != pipes.end(); ) {
+		if (find(pipeIDs.begin(), pipeIDs.end(), it->getID()) != pipeIDs.end()) {
+			cout << "Удалена труба: " << it->getName() << " (ID: " << it->getID() << ")" << endl;
+			it = pipes.erase(it);
+		}
+		else {
+			++it;
+		}
+	}
+
+	for (auto it = container.begin(); it != container.end(); ) {
+		if (holds_alternative<Pipe>(*it)) {
+			Pipe pipe = get<Pipe>(*it);
+			if (find(pipeIDs.begin(), pipeIDs.end(), pipe.getID()) != pipeIDs.end()) {
+				it = container.erase(it);
+			}
+			else {
+				++it;
+			}
+		}
+		else {
+			++it;
+		}
+	}
+}
+
+void SearchPipesWithBatchOperations() {
+	system("cls");
+	cout << "=== Поиск труб по фильтрам с пакетными операциями ===" << endl;
+
+	if (pipes.empty()) {
+		cout << "Ошибка: Трубы не добавлены!" << endl;
+		cout << "Нажмите Enter для продолжения...";
+		cin.ignore(1000, '\n');
+		while (cin.get() != '\n');
+		return;
+	}
+
+	string searchName;
+	int repairStatus = -1;
+
+	cout << "Введите название трубы для поиска (или оставьте пустым для пропуска): ";
+	cin.ignore(1000, '\n');
+	getline(cin, searchName);
+
+	cout << "Фильтр по статусу ремонта:" << endl;
+	cout << "0 - Только работающие трубы" << endl;
+	cout << "1 - Только трубы в ремонте" << endl;
+	cout << "2 - Любой статус (пропустить фильтр)" << endl;
+	cout << "Выберите фильтр: ";
+
+	while (!(cin >> repairStatus) || repairStatus < 0 || repairStatus > 2 || cin.peek() != '\n') {
+		cout << "Ошибка! Введите число от 0 до 2: ";
+		cin.clear();
+		cin.ignore(1000, '\n');
+	}
+
+	vector<Pipe> results;
+	vector<int> foundIDs;
+
+	for (const auto& pipe : pipes) {
+		bool nameMatch = true;
+		bool statusMatch = true;
+
+		if (!searchName.empty()) {
+			string pipeNameLower = toLower(pipe.getName());
+			string searchNameLower = toLower(searchName);
+			if (pipeNameLower.find(searchNameLower) == string::npos) {
+				nameMatch = false;
+			}
+		}
+
+		if (repairStatus != 2) {
+			bool requiredStatus = (repairStatus == 1);
+			if (pipe.getStatus() != requiredStatus) {
+				statusMatch = false;
+			}
+		}
+
+		if (nameMatch && statusMatch) {
+			results.push_back(pipe);
+			foundIDs.push_back(pipe.getID());
+		}
+	}
+
+	if (results.empty()) {
+		cout << "Трубы по заданным критериям не найдены." << endl;
+		cout << "Нажмите Enter для продолжения...";
+		cin.ignore(1000, '\n');
+		while (cin.get() != '\n');
+		return;
+	}
+
+	cout << "=== Результаты поиска ===" << endl;
+	cout << "Найдено труб: " << results.size() << endl;
+	for (int i = 0; i < results.size(); i++) {
+		results[i].displayInfo(i);
+	}
+
+	int batchChoice;
+	do {
+		cout << "\n=== Пакетные операции ===" << endl;
+		cout << "1. Изменить статус ремонта для всех найденных труб" << endl;
+		cout << "2. Удалить все найденные трубы" << endl;
+		cout << "3. Выбрать конкретные трубы для изменения статуса" << endl;
+		cout << "4. Выбрать конкретные трубы для удаления" << endl;
+		cout << "0. Вернуться в главное меню" << endl;
+		cout << "Выберите операцию: ";
+
+		while (!(cin >> batchChoice) || batchChoice < 0 || batchChoice > 4 || cin.peek() != '\n') {
+			cout << "Ошибка! Введите число от 0 до 4: ";
+			cin.clear();
+			cin.ignore(1000, '\n');
+		}
+
+		switch (batchChoice) {
+		case 1: {
+			cout << "Установить статус для всех найденных труб:" << endl;
+			cout << "0 - Работает" << endl;
+			cout << "1 - В ремонте" << endl;
+			cout << "Выберите статус: ";
+
+			int newStatus;
+			while (!(cin >> newStatus) || (newStatus != 0 && newStatus != 1) || cin.peek() != '\n') {
+				cout << "Ошибка! Введите 0 или 1: ";
+				cin.clear();
+				cin.ignore(1000, '\n');
+			}
+
+			BatchChangePipeStatus(foundIDs, newStatus == 1);
+			cout << "Статус изменен для " << foundIDs.size() << " труб." << endl;
+			break;
+		}
+
+		case 2: {
+			cout << "Вы уверены, что хотите удалить все " << foundIDs.size() << " найденных труб?" << endl;
+			cout << "1 - Да, удалить все" << endl;
+			cout << "0 - Нет, отменить" << endl;
+			cout << "Выберите действие: ";
+
+			int confirm;
+			while (!(cin >> confirm) || (confirm != 0 && confirm != 1) || cin.peek() != '\n') {
+				cout << "Ошибка! Введите 0 или 1: ";
+				cin.clear();
+				cin.ignore(1000, '\n');
+			}
+
+			if (confirm == 1) {
+				BatchDeletePipes(foundIDs);
+				cout << "Удалено " << foundIDs.size() << " труб." << endl;
+				foundIDs.clear();
+			}
+			else {
+				cout << "Удаление отменено." << endl;
+			}
+			break;
+		}
+
+		case 3: {
+			if (foundIDs.empty()) {
+				cout << "Нет доступных труб для выбора." << endl;
+				break;
+			}
+
+			cout << "Введите ID труб для изменения статуса (через пробел): ";
+			cin.ignore(1000, '\n');
+			string input;
+			getline(cin, input);
+
+			vector<int> selectedIDs;
+			stringstream ss(input);
+			int id;
+			while (ss >> id) {
+				if (find(foundIDs.begin(), foundIDs.end(), id) != foundIDs.end()) {
+					selectedIDs.push_back(id);
+				}
+				else {
+					cout << "ID " << id << " не найден в результатах поиска." << endl;
+				}
+			}
+
+			if (!selectedIDs.empty()) {
+				cout << "Установить статус для выбранных труб:" << endl;
+				cout << "0 - Работает" << endl;
+				cout << "1 - В ремонте" << endl;
+				cout << "Выберите статус: ";
+
+				int newStatus;
+				while (!(cin >> newStatus) || (newStatus != 0 && newStatus != 1) || cin.peek() != '\n') {
+					cout << "Ошибка! Введите 0 или 1: ";
+					cin.clear();
+					cin.ignore(1000, '\n');
+				}
+
+				BatchChangePipeStatus(selectedIDs, newStatus == 1);
+				cout << "Статус изменен для " << selectedIDs.size() << " труб." << endl;
+			}
+			break;
+		}
+
+		case 4: {
+			if (foundIDs.empty()) {
+				cout << "Нет доступных труб для выбора." << endl;
+				break;
+			}
+
+			cout << "Введите ID труб для удаления (через пробел): ";
+			cin.ignore(1000, '\n');
+			string input;
+			getline(cin, input);
+
+			vector<int> selectedIDs;
+			stringstream ss(input);
+			int id;
+			while (ss >> id) {
+				if (find(foundIDs.begin(), foundIDs.end(), id) != foundIDs.end()) {
+					selectedIDs.push_back(id);
+				}
+				else {
+					cout << "ID " << id << " не найден в результатах поиска." << endl;
+				}
+			}
+
+			if (!selectedIDs.empty()) {
+				cout << "Вы уверены, что хотите удалить " << selectedIDs.size() << " труб?" << endl;
+				cout << "1 - Да, удалить" << endl;
+				cout << "0 - Нет, отменить" << endl;
+				cout << "Выберите действие: ";
+
+				int confirm;
+				while (!(cin >> confirm) || (confirm != 0 && confirm != 1) || cin.peek() != '\n') {
+					cout << "Ошибка! Введите 0 или 1: ";
+					cin.clear();
+					cin.ignore(1000, '\n');
+				}
+
+				if (confirm == 1) {
+					BatchDeletePipes(selectedIDs);
+					cout << "Удалено " << selectedIDs.size() << " труб." << endl;
+
+					for (int id : selectedIDs) {
+						auto it = find(foundIDs.begin(), foundIDs.end(), id);
+						if (it != foundIDs.end()) {
+							foundIDs.erase(it);
+						}
+					}
+				}
+				else {
+					cout << "Удаление отменено." << endl;
+				}
+			}
+			break;
+		}
+
+		case 0:
+			cout << "Возврат в главное меню..." << endl;
+			break;
+		}
+
+		if (batchChoice == 2 || batchChoice == 4) {
+			results.clear();
+			for (const auto& pipe : pipes) {
+				if (find(foundIDs.begin(), foundIDs.end(), pipe.getID()) != foundIDs.end()) {
+					results.push_back(pipe);
+				}
+			}
+
+			if (results.empty()) {
+				cout << "Больше нет труб, соответствующих критериям поиска." << endl;
+				break;
+			}
+			else {
+				cout << "\nОбновленные результаты поиска (" << results.size() << " труб):" << endl;
+				for (int i = 0; i < results.size(); i++) {
+					results[i].displayInfo(i);
+				}
+			}
+		}
+
+	} while (batchChoice != 0);
 
 	cout << "Нажмите Enter для продолжения...";
 	cin.ignore(1000, '\n');
@@ -1048,7 +1292,7 @@ void ShowMenu() {
 		cout << "6. Сохранить" << endl;
 		cout << "7. Загрузить" << endl;
 		cout << "8. Удалить объект по ID" << endl;
-		cout << "9. Поиск труб по названию, по признаку «в ремонте" << endl;
+		cout << "9. Поиск труб по названию, по признаку «в ремонте (С возможностью пакетного редактирования)" << endl;
 		cout << "10. Поиск КС по названию, по проценту незадействованных цехов" << endl;
 		cout << "0. Выход" << endl;
 		cout << "Выберите действие: ";
@@ -1090,7 +1334,7 @@ void ShowMenu() {
 		case 8:
 			RemoveAnyObjectByID();
 		case 9:
-			SearchPipes();
+			SearchPipesWithBatchOperations();
 			break;
 		case 10:
 			SearchCS();
