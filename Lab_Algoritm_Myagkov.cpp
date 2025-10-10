@@ -107,21 +107,29 @@ public:
 		while (name.empty() || name.find_first_not_of(' ') == string::npos) {
 			cout << "Ошибка! Название не может быть пустым. Введите снова: ";
 			getline(cin, name);
+			getline(cin, name);
+			logKeyboardInput(name);
 		}
 		
 		cout << "Введите длину трубы (км): ";
+		float length;
 		while (!(cin >> length) || length <= 0 || cin.peek() != '\n') {
 			cout << "Ошибка! Введите положительное число: ";
 			cin.clear();
 			cin.ignore(1000, '\n');
+			logKeyboardInput(to_string(length));
 		}
+		logKeyboardInput(to_string(length));
 
 		cout << "Введите диаметр трубы (мм): ";
+		int diameter;
 		while (!(cin >> diameter) || diameter <= 0 || cin.peek() != '\n') {
 			cout << "Ошибка! Введите положительное целое число: ";
 			cin.clear();
 			cin.ignore(1000, '\n');
+			logKeyboardInput(to_string(diameter));
 		}
+		logKeyboardInput(to_string(diameter));
 
 		cout << "Труба в ремонте? (1 - да, 0 - нет): ";
 		int repairStatus;
@@ -129,9 +137,10 @@ public:
 			cout << "Ошибка! Введите 0 или 1: ";
 			cin.clear();
 			cin.ignore(1000, '\n');
+			logKeyboardInput(to_string(repairStatus));
 		}
 		status = (repairStatus == 1);
-
+		logKeyboardInput(to_string(repairStatus));
 		cin.ignore(1000, '\n');
 	}
 
@@ -228,22 +237,27 @@ public:
 		cout << "Введите название КС: ";
 		string name_input;
 		getline(cin, name_input);
-		logKeyboardInput(name_input);
 		setName(name_input);
 
 		while (name.empty() || name.find_first_not_of(' ') == string::npos) {
 			cout << "Ошибка! Название не может быть пустым. Введите снова: ";
 			getline(cin, name);
+			logKeyboardInput(name_input);
 		}
+		logKeyboardInput(name_input);
 
 		cout << "Введите количество цехов: ";
+		int number_work;
 		while (!(cin >> number_work) || number_work <= 0 || cin.peek() != '\n') {
 			cout << "Ошибка! Введите положительное целое число: ";
 			cin.clear();
 			cin.ignore(1000, '\n');
+			logKeyboardInput(to_string(number_work));
 		}
+		logKeyboardInput(to_string(number_work));
 
 		cout << "Введите количество работающих цехов: ";
+		int number_work_online;
 		while (!(cin >> number_work_online) || number_work_online < 0 ||
 			number_work_online > number_work || cin.peek() != '\n') {
 			if (cin.fail()) {
@@ -258,17 +272,20 @@ public:
 			}
 			cin.clear();
 			cin.ignore(1000, '\n');
+			logKeyboardInput(to_string(number_work_online));
 		}
-
+		
 		cin.ignore(1000, '\n');
-
+		logKeyboardInput(to_string(number_work_online));
 		cout << "Введите класс станций: ";
 		getline(cin, class_cs);
 
 		while (class_cs.empty()) {
 			cout << "Ошибка! Класс станции не может быть пустым. Введите снова: ";
 			getline(cin, class_cs);
+			logKeyboardInput(class_cs);
 		}
+		logKeyboardInput(class_cs);
 	}
 
 	void displayInfo(int index = -1) const {
@@ -392,6 +409,7 @@ void EditPipe() {
 		cout << "Ошибка! Введите число от 0 до " << pipes.size() << ": ";
 		cin.clear();
 		cin.ignore(1000, '\n');
+		logKeyboardInput(to_string(pipeChoice));
 	}
 	logKeyboardInput(to_string(pipeChoice));
 
@@ -416,7 +434,9 @@ void EditPipe() {
 		cout << "Ошибка! Введите 1 или 2: ";
 		cin.clear();
 		cin.ignore(1000, '\n');
+		logKeyboardInput(to_string(choice));
 	}
+	logKeyboardInput(to_string(choice));
 
 	if (choice == 1) {
 		cout << "Текущий статус: " << (pipe.getStatus() ? "В ремонте" : "Работает") << endl;
@@ -427,12 +447,15 @@ void EditPipe() {
 			cout << "Ошибка! Введите 0 или 1: ";
 			cin.clear();
 			cin.ignore(1000, '\n');
+			logKeyboardInput(to_string(change));
 		}
+		
 
 		if (change == 1) {
 			pipe.toggleStatus();
 			cout << "Статус изменен. Теперь труба " << (pipe.getStatus() ? "в ремонте" : "работает") << "!" << endl;
 		}
+		logKeyboardInput(to_string(change));
 	}
 
 	cout << "Нажмите Enter для продолжения...";
@@ -468,6 +491,7 @@ void EditCS() {
 		cout << "Ошибка! Введите число от 0 до " << css.size() << ": ";
 		cin.clear();
 		cin.ignore(1000, '\n');
+		logKeyboardInput(to_string(csChoice));
 	}
 	logKeyboardInput(to_string(csChoice));
 
@@ -492,7 +516,9 @@ void EditCS() {
 		cout << "Ошибка! Введите 1 или 2: ";
 		cin.clear();
 		cin.ignore(1000, '\n');
+		logKeyboardInput(to_string(choice));
 	}
+	logKeyboardInput(to_string(choice));
 
 	if (choice == 1) {
 		cout << "Текущее состояние: " << cs.getNumberWorkOnline()
@@ -507,8 +533,9 @@ void EditCS() {
 			cout << "Ошибка! Введите 0, 1 или 2: ";
 			cin.clear();
 			cin.ignore(1000, '\n');
+			logKeyboardInput(to_string(action));
 		}
-
+		logKeyboardInput(to_string(action));
 		switch (action) {
 		case 1:
 			if (cs.getNumberWorkOnline() < cs.getNumberWork()) {
@@ -551,12 +578,14 @@ void SaveToCustomFile() {
 	cout << "Введите название файла для сохранения (например: data.txt): ";
 	cin.ignore(1000, '\n');
 	getline(cin, filename);
-	logKeyboardInput(filename);
+
 
 	while (filename.empty() || filename.find_first_not_of(' ') == string::npos) {
 		cout << "Ошибка! Имя файла не может быть пустым. Введите снова: ";
 		getline(cin, filename);
+		logKeyboardInput(filename);
 	}
+	logKeyboardInput(filename);
 
 	ofstream outFile(filename);
 
@@ -1091,6 +1120,7 @@ void SearchPipesWithBatchOperations() {
 		cout << "Ошибка! Введите число от 0 до 2: ";
 		cin.clear();
 		cin.ignore(1000, '\n');
+		logKeyboardInput(to_string(repairStatus));
 	}
 	logKeyboardInput(to_string(repairStatus));
 
@@ -1150,7 +1180,9 @@ void SearchPipesWithBatchOperations() {
 			cout << "Ошибка! Введите число от 0 до 4: ";
 			cin.clear();
 			cin.ignore(1000, '\n');
+			logKeyboardInput(to_string(batchChoice));
 		}
+		logKeyboardInput(to_string(batchChoice));
 
 		switch (batchChoice) {
 		case 1: {
@@ -1164,7 +1196,9 @@ void SearchPipesWithBatchOperations() {
 				cout << "Ошибка! Введите 0 или 1: ";
 				cin.clear();
 				cin.ignore(1000, '\n');
+				logKeyboardInput(to_string(newStatus));
 			}
+			logKeyboardInput(to_string(newStatus));
 
 			BatchChangePipeStatus(foundIDs, newStatus == 1);
 			cout << "Статус изменен для " << foundIDs.size() << " труб." << endl;
@@ -1182,7 +1216,9 @@ void SearchPipesWithBatchOperations() {
 				cout << "Ошибка! Введите 0 или 1: ";
 				cin.clear();
 				cin.ignore(1000, '\n');
+				logKeyboardInput(to_string(confirm));
 			}
+			logKeyboardInput(to_string(confirm));
 
 			if (confirm == 1) {
 				BatchDeletePipes(foundIDs);
@@ -1229,7 +1265,9 @@ void SearchPipesWithBatchOperations() {
 					cout << "Ошибка! Введите 0 или 1: ";
 					cin.clear();
 					cin.ignore(1000, '\n');
+					logKeyboardInput(to_string(newStatus));
 				}
+				logKeyboardInput(to_string(newStatus));
 
 				BatchChangePipeStatus(selectedIDs, newStatus == 1);
 				cout << "Статус изменен для " << selectedIDs.size() << " труб." << endl;
@@ -1271,7 +1309,9 @@ void SearchPipesWithBatchOperations() {
 					cout << "Ошибка! Введите 0 или 1: ";
 					cin.clear();
 					cin.ignore(1000, '\n');
+					logKeyboardInput(to_string(confirm));
 				}
+				logKeyboardInput(to_string(confirm));
 
 				if (confirm == 1) {
 					BatchDeletePipes(selectedIDs);
@@ -1347,6 +1387,7 @@ void ShowMenu() {
 			cout << "Ошибка! Введите число от 0 до 10: ";
 			cin.clear();
 			while (cin.get() != '\n');
+			logKeyboardInput(to_string(options));
 		}
 		logKeyboardInput(to_string(options));
 		switch (options) {
