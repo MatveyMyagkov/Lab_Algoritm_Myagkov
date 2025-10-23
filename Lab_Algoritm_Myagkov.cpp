@@ -1437,3 +1437,9 @@ int main() {
 	ShowMenu();
 	return 0;
 }
+// To do
+// Template щаблон проверок
+// Перегрузка операторов cin / cout
+// разные файлы
+// cout << pipe
+// map 

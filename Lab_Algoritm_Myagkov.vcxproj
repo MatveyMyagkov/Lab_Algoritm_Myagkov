@@ -123,9 +123,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Lab_Algoritm_Myagkov.cpp">
-      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp20</LanguageStandard>
-    </ClCompile>
+    <ClCompile Include="CS.cpp" />
+    <ClCompile Include="KeyboardLogger.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Pipe.cpp" />
+    <ClCompile Include="PipelineSystem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CS.h" />
+    <ClInclude Include="KeyboardLogger.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Pipe.h" />
+    <ClInclude Include="PipelineSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

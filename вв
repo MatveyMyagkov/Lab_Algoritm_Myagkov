@@ -1,0 +1,26 @@
+=== Pipeline system data ===
+======================================
+
+Трубы (всего: 2):
+Труба #1
+  ID: 1
+  Name: 1
+  Length: 1 km
+  Diameter: 1 mm
+  Status: Not worked
+
+Труба #2
+  ID: 2
+  Name: 1
+  Length: 1 km
+  Diameter: 2 mm
+  Status: Not worked
+
+Компрессорные станции (всего: 1):
+КС #1
+  ID: 3
+  Name: 1
+  all workshop: 1
+  Online workshop: 1
+  Class: 1
+
