@@ -1,6 +1,9 @@
 #ifndef PIPELINESYSTEM_H
 #define PIPELINESYSTEM_H
 
+#include "Pipe.h"
+#include "CS.h"
+#include "Network.h"
 #include <map>
 #include <vector>
 #include <string>
@@ -8,14 +11,11 @@
 #include <sstream>
 #include <iomanip>
 #include <fstream>
-#include "Pipe.h"
-#include "CS.h"
 
 extern std::map<int, Pipe> pipes;
 extern std::map<int, CS> css;
 
-std::string toLower(const std::string& str);
-int getNextID();
+extern GasNetwork gasNetwork;
 
 void Addpipe();
 void Addcs();
@@ -23,15 +23,13 @@ void ViewAllObjects();
 void EditPipe();
 void EditCS();
 void RemoveAnyObjectByID();
-
 void SaveToCustomFile();
 void LoadFromCustomFile();
-
 void SearchCS();
 void SearchPipesWithBatchOperations();
-
-void ChangePipeStatusByID(int id, bool newStatus);
-void BatchChangePipeStatus(const std::vector<int>& pipeIDs, bool newStatus);
-void BatchDeletePipes(const std::vector<int>& pipeIDs);
+void ConnectCSWithPipe();
+void DisplayGasNetwork();
+void DisconnectPipeFromNetwork();
+void TopologicalSort();
 
 #endif

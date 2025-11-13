@@ -6,6 +6,8 @@
 std::map<int, Pipe> pipes;
 std::map<int, CS> css;
 
+GasNetwork gasNetwork(pipes, css);
+
 int getNextID() {
     static int nextID = 1;
 
@@ -1005,6 +1007,90 @@ void SearchPipesWithBatchOperations() {
         }
 
     } while (batchChoice != 0);
+
+    std::cout << "Нажмите Enter для продолжения...";
+    std::cin.ignore(1000, '\n');
+    while (std::cin.get() != '\n');
+}
+
+void ConnectCSWithPipe() {
+    system("cls");
+    std::cout << "=== Соединение КС трубой ===" << std::endl;
+
+    if (css.size() < 2) {
+        std::cout << "Ошибка: Для соединения необходимо как минимум 2 КС!" << std::endl;
+        std::cout << "Нажмите Enter для продолжения...";
+        std::cin.ignore(1000, '\n');
+        while (std::cin.get() != '\n');
+        return;
+    }
+
+    std::cout << "Доступные КС:" << std::endl;
+    for (const auto& csPair : css) {
+        std::cout << "ID: " << csPair.first << " - " << csPair.second.getName() << std::endl;
+    }
+
+    int sourceCS, destinationCS, diameter;
+
+    std::cout << "Введите ID КС входа: ";
+    while (!(std::cin >> sourceCS) || css.find(sourceCS) == css.end()) {
+        std::cout << "Ошибка! Введите существующий ID КС: ";
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+    }
+
+    std::cout << "Введите ID КС выхода: ";
+    while (!(std::cin >> destinationCS) || css.find(destinationCS) == css.end() || destinationCS == sourceCS) {
+        if (destinationCS == sourceCS) {
+            std::cout << "Ошибка! КС входа и выхода не могут совпадать. Введите другой ID: ";
+        }
+        else {
+            std::cout << "Ошибка! Введите существующий ID КС: ";
+        }
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+    }
+
+    std::cout << "Доступные диаметры: 500, 700, 1000, 1400 мм" << std::endl;
+    std::cout << "Введите диаметр трубы: ";
+    while (!(std::cin >> diameter)) {
+        std::cout << "Ошибка! Введите целое число: ";
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+    }
+
+    if (!gasNetwork.connectCS(sourceCS, destinationCS, diameter)) {
+        std::cout << "Не удалось создать соединение." << std::endl;
+    }
+
+    std::cout << "Нажмите Enter для продолжения...";
+    std::cin.ignore(1000, '\n');
+    while (std::cin.get() != '\n');
+}
+
+void DisplayGasNetwork() {
+    system("cls");
+    gasNetwork.displayNetwork();
+    std::cout << "Нажмите Enter для продолжения...";
+    std::cin.ignore(1000, '\n');
+    while (std::cin.get() != '\n');
+}
+
+void DisconnectPipeFromNetwork() {
+    system("cls");
+    std::cout << "=== Отключение трубы от сети ===" << std::endl;
+
+    std::cout << "Введите ID трубы для отключения: ";
+    int pipeID;
+    while (!(std::cin >> pipeID) || pipeID <= 0) {
+        std::cout << "Ошибка! Введите положительное целое число: ";
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+    }
+
+    if (!gasNetwork.disconnectPipe(pipeID)) {
+        std::cout << "Труба с ID " << pipeID << " не найдена в сети или не существует." << std::endl;
+    }
 
     std::cout << "Нажмите Enter для продолжения...";
     std::cin.ignore(1000, '\n');
