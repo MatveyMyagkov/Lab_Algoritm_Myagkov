@@ -12,6 +12,4 @@ int main() {
 // To do
 // Template щаблон проверок
 // Перегрузка операторов cin / cout
-// разные файлы
 // cout << pipe
-// map 

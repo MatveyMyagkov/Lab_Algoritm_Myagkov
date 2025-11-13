@@ -127,6 +127,7 @@
     <ClCompile Include="KeyboardLogger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Network.cpp" />
     <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="PipelineSystem.cpp" />
   </ItemGroup>
@@ -134,6 +135,7 @@
     <ClInclude Include="CS.h" />
     <ClInclude Include="KeyboardLogger.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Network.h" />
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="PipelineSystem.h" />
   </ItemGroup>
