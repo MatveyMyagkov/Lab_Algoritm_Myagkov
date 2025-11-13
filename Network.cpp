@@ -90,3 +90,73 @@ void GasNetwork::displayNetwork() const {
 
     std::cout << "Всего соединений: " << usedPipes.size() << std::endl;
 }
+// Вспомогательные функции для топологической сортировки
+bool GasNetwork::hasCycleDFS(int node, std::set<int>& visited, std::set<int>& recursionStack) const {
+    if (recursionStack.find(node) != recursionStack.end()) {
+        return true; // Найден цикл
+    }
+    if (visited.find(node) != visited.end()) {
+        return false;
+    }
+
+    visited.insert(node);
+    recursionStack.insert(node);
+
+    auto it = adjacencyList.find(node);
+    if (it != adjacencyList.end()) {
+        for (const auto& conn : it->second) {
+            if (hasCycleDFS(conn.destinationCS, visited, recursionStack)) {
+                return true;
+            }
+        }
+    }
+
+    recursionStack.erase(node);
+    return false;
+}
+
+bool GasNetwork::hasCycle() const {
+    std::set<int> visited;
+    std::set<int> recursionStack;
+
+    for (const auto& node : adjacencyList) {
+        if (hasCycleDFS(node.first, visited, recursionStack)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void GasNetwork::topologicalSortDFS(int node, std::set<int>& visited, std::vector<int>& result) const {
+    visited.insert(node);
+
+    auto it = adjacencyList.find(node);
+    if (it != adjacencyList.end()) {
+        for (const auto& conn : it->second) {
+            if (visited.find(conn.destinationCS) == visited.end()) {
+                topologicalSortDFS(conn.destinationCS, visited, result);
+            }
+        }
+    }
+
+    result.push_back(node);
+}
+
+std::vector<int> GasNetwork::topologicalSort() const {
+    std::vector<int> result;
+    std::set<int> visited;
+
+    if (hasCycle()) {
+        std::cout << "Предупреждение: Сеть содержит циклы! Топологическая сортировка невозможна для циклических графов." << std::endl;
+        return result;
+    }
+
+    for (const auto& node : adjacencyList) {
+        if (visited.find(node.first) == visited.end()) {
+            topologicalSortDFS(node.first, visited, result);
+        }
+    }
+
+    std::reverse(result.begin(), result.end());
+    return result;
+}

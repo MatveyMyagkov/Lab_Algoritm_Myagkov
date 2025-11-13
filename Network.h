@@ -6,7 +6,6 @@
 #include <map>
 #include <vector>
 #include <set>
-#include <memory>
 
 struct Connection {
     int pipeID;
@@ -21,11 +20,14 @@ struct Connection {
 
 class GasNetwork {
 private:
-    std::map<int, std::vector<Connection>> adjacencyList;
+    std::map<int, std::vector<Connection>> adjacencyList; // граф смежности
     std::set<int> usedPipes;
 
     const std::map<int, Pipe>& pipesRef;
     const std::map<int, CS>& cssRef;
+
+    bool hasCycleDFS(int node, std::set<int>& visited, std::set<int>& recursionStack) const;
+    void topologicalSortDFS(int node, std::set<int>& visited, std::vector<int>& result) const;
 
 public:
     GasNetwork(const std::map<int, Pipe>& pipes, const std::map<int, CS>& css);
@@ -35,6 +37,9 @@ public:
     void displayNetwork() const;
     bool isPipeUsed(int pipeID) const;
     std::vector<int> getAvailableDiameters() const;
+
+    std::vector<int> topologicalSort() const;
+    bool hasCycle() const;
 
     const std::map<int, std::vector<Connection>>& getAdjacencyList() const { return adjacencyList; }
 };

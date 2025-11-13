@@ -20,16 +20,18 @@ void ShowMenu() {
         std::cout << "8. Удалить объект по ID" << std::endl;
         std::cout << "9. Поиск труб по названию, по признаку «в ремонте»" << std::endl;
         std::cout << "10. Поиск КС по названию, по проценту незадействованных цехов" << std::endl;
+        std::cout << "11. Соединить КС трубой" << std::endl;           // НОВЫЙ ПУНКТ
+        std::cout << "12. Показать газотранспортную сеть" << std::endl; // НОВЫЙ ПУНКТ
+        std::cout << "13. Отключить трубу от сети" << std::endl;       // НОВЫЙ ПУНКТ
+        std::cout << "14. Топологическая сортировка сети" << std::endl; // НОВЫЙ ПУНКТ
         std::cout << "0. Выход" << std::endl;
         std::cout << "Выберите действие: ";
 
-        while (!(std::cin >> options) || options < 0 || options > 10 || std::cin.peek() != '\n') {
-            std::cout << "Ошибка! Введите число от 0 до 10: ";
+        while (!(std::cin >> options) || options < 0 || options > 14 || std::cin.peek() != '\n') {
+            std::cout << "Ошибка! Введите число от 0 до 14: ";
             std::cin.clear();
             while (std::cin.get() != '\n');
-            logKeyboardInput(std::to_string(options));
         }
-        logKeyboardInput(std::to_string(options));
 
         switch (options) {
         case 0:
@@ -38,11 +40,9 @@ void ShowMenu() {
             break;
         case 1:
             Addpipe();
-            std::cout << "Труба успешно добавлена! Всего труб: " << pipes.size() << std::endl;
             break;
         case 2:
             Addcs();
-            std::cout << "КС успешно добавлена! Всего КС: " << css.size() << std::endl;
             break;
         case 3:
             ViewAllObjects();
@@ -57,7 +57,7 @@ void ShowMenu() {
             SaveToCustomFile();
             break;
         case 7:
-            LoadFromCustomFile(); 
+            LoadFromCustomFile();
             break;
         case 8:
             RemoveAnyObjectByID();
@@ -67,6 +67,18 @@ void ShowMenu() {
             break;
         case 10:
             SearchCS();
+            break;
+        case 11:
+            ConnectCSWithPipe();
+            break;
+        case 12:
+            DisplayGasNetwork();
+            break;
+        case 13:
+            DisconnectPipeFromNetwork();
+            break;
+        case 14:
+            TopologicalSort();
             break;
         }
     }

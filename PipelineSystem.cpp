@@ -1096,3 +1096,30 @@ void DisconnectPipeFromNetwork() {
     std::cin.ignore(1000, '\n');
     while (std::cin.get() != '\n');
 }
+
+void TopologicalSort() {
+    system("cls");
+    std::cout << "=== Топологическая сортировка газотранспортной сети ===" << std::endl;
+
+    std::vector<int> sorted = gasNetwork.topologicalSort();
+
+    if (sorted.empty()) {
+        std::cout << "Сеть пуста или содержит циклы." << std::endl;
+    }
+    else {
+        std::cout << "Топологический порядок КС:" << std::endl;
+        for (size_t i = 0; i < sorted.size(); ++i) {
+            auto it = css.find(sorted[i]);
+            if (it != css.end()) {
+                std::cout << i + 1 << ". КС " << sorted[i] << " - " << it->second.getName() << std::endl;
+            }
+            else {
+                std::cout << i + 1 << ". КС " << sorted[i] << " (не найдена в базе)" << std::endl;
+            }
+        }
+    }
+
+    std::cout << "Нажмите Enter для продолжения...";
+    std::cin.ignore(1000, '\n');
+    while (std::cin.get() != '\n');
+}

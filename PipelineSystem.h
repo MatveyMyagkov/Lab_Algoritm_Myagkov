@@ -16,7 +16,7 @@ extern std::map<int, Pipe> pipes;
 extern std::map<int, CS> css;
 
 extern GasNetwork gasNetwork;
-
+void TopologicalSort();
 void Addpipe();
 void Addcs();
 void ViewAllObjects();
