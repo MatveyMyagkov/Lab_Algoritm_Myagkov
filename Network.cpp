@@ -90,10 +90,9 @@ void GasNetwork::displayNetwork() const {
 
     std::cout << "Всего соединений: " << usedPipes.size() << std::endl;
 }
-// Вспомогательные функции для топологической сортировки
 bool GasNetwork::hasCycleDFS(int node, std::set<int>& visited, std::set<int>& recursionStack) const {
     if (recursionStack.find(node) != recursionStack.end()) {
-        return true; // Найден цикл
+        return true;
     }
     if (visited.find(node) != visited.end()) {
         return false;
