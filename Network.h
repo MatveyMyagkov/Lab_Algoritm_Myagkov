@@ -9,8 +9,8 @@
 
 struct Connection {
     int pipeID;
-    int sourceCS;    // КС входа
-    int destinationCS; // КС выхода
+    int sourceCS;
+    int destinationCS;
     bool isConnected;
 
     Connection(int pipeId, int src, int dest)
@@ -20,11 +20,12 @@ struct Connection {
 
 class GasNetwork {
 private:
-    std::map<int, std::vector<Connection>> adjacencyList; // граф смежности
+    std::map<int, std::vector<Connection>> adjacencyList;
     std::set<int> usedPipes;
 
     const std::map<int, Pipe>& pipesRef;
     const std::map<int, CS>& cssRef;
+    
 
     bool hasCycleDFS(int node, std::set<int>& visited, std::set<int>& recursionStack) const;
     void topologicalSortDFS(int node, std::set<int>& visited, std::vector<int>& result) const;
@@ -37,7 +38,7 @@ public:
     void displayNetwork() const;
     bool isPipeUsed(int pipeID) const;
     std::vector<int> getAvailableDiameters() const;
-
+    bool isPipeUsedInNetwork(int pipeID) const;
     std::vector<int> topologicalSort() const;
     bool hasCycle() const;
 

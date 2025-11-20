@@ -159,3 +159,7 @@ std::vector<int> GasNetwork::topologicalSort() const {
     std::reverse(result.begin(), result.end());
     return result;
 }
+
+bool GasNetwork::isPipeUsedInNetwork(int pipeID) const {
+    return isPipeUsed(pipeID);
+}
