@@ -31,5 +31,6 @@ void ConnectCSWithPipe();
 void DisplayGasNetwork();
 void DisconnectPipeFromNetwork();
 void TopologicalSort();
-
+void CalculateMaxFlow();
+void FindShortestPath();
 #endif

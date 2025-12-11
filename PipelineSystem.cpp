@@ -1,4 +1,4 @@
-#include "PipelineSystem.h"
+Ôªø#include "PipelineSystem.h"
 #include <windows.h>
 #include <iostream>
 #include <fstream>
@@ -31,7 +31,7 @@ std::string toLower(const std::string& str) {
 
 void Addpipe() {
 	system("cls");
-	std::cout << "=== ƒÓ·‡‚ÎÂÌËÂ ÚÛ·˚ ===" << std::endl;
+	std::cout << "=== –î–æ–±–∞–≤–ª–µ–Ω–∏–µ —Ç—Ä—É–±—ã ===" << std::endl;
 
 	Pipe pipe;
 	pipe.inputFromConsole();
@@ -39,12 +39,12 @@ void Addpipe() {
 	pipe.setID(newID);
 	pipes[newID] = pipe;
 
-	std::cout << "“Û·‡ ÛÒÔÂ¯ÌÓ ‰Ó·‡‚ÎÂÌ‡ Ò ID: " << newID << std::endl;
+	std::cout << "–¢—Ä—É–±–∞ —É—Å–ø–µ—à–Ω–æ –¥–æ–±–∞–≤–ª–µ–Ω–∞ —Å ID: " << newID << std::endl;
 }
 
 void Addcs() {
 	system("cls");
-	std::cout << "=== ƒÓ·‡‚ÎÂÌËÂ  — ===" << std::endl;
+	std::cout << "=== –î–æ–±–∞–≤–ª–µ–Ω–∏–µ –ö–° ===" << std::endl;
 
 	CS cs;
 	cs.inputFromConsole();
@@ -52,18 +52,18 @@ void Addcs() {
 	cs.setID(newID);
 	css[newID] = cs;
 
-	std::cout << " — ÛÒÔÂ¯ÌÓ ‰Ó·‡‚ÎÂÌ‡ Ò ID: " << newID << std::endl;
+	std::cout << "–ö–° —É—Å–ø–µ—à–Ω–æ –¥–æ–±–∞–≤–ª–µ–Ω–∞ —Å ID: " << newID << std::endl;
 }
 
 void ViewAllObjects() {
 	system("cls");
-	std::cout << "œÓÒÏÓÚ ‚ÒÂı Ó·˙ÂÍÚÓ‚" << std::endl;
+	std::cout << "–ü—Ä–æ—Å–º–æ—Ç—Ä –≤—Å–µ—Ö –æ–±—ä–µ–∫—Ç–æ–≤" << std::endl;
 
 	if (pipes.empty()) {
-		std::cout << "“Û·˚: ÌÂ ‰Ó·‡‚ÎÂÌ˚\n";
+		std::cout << "–¢—Ä—É–±—ã: –Ω–µ –¥–æ–±–∞–≤–ª–µ–Ω—ã\n";
 	}
 	else {
-		std::cout << "=== “Û·˚ (‚ÒÂ„Ó: " << pipes.size() << ") ===" << std::endl;
+		std::cout << "=== –¢—Ä—É–±—ã (–≤—Å–µ–≥–æ: " << pipes.size() << ") ===" << std::endl;
 		int index = 0;
 		for (const auto& pair : pipes) {
 			pair.second.displayInfo(index++);
@@ -71,17 +71,17 @@ void ViewAllObjects() {
 	}
 
 	if (css.empty()) {
-		std::cout << " —: ÌÂ ‰Ó·‡‚ÎÂÌ˚" << std::endl;
+		std::cout << "–ö–°: –Ω–µ –¥–æ–±–∞–≤–ª–µ–Ω—ã" << std::endl;
 	}
 	else {
-		std::cout << "===  ÓÏÔÂÒÒÓÌ˚Â ÒÚ‡ÌˆËË (‚ÒÂ„Ó: " << css.size() << ") ===" << std::endl;
+		std::cout << "=== –ö–æ–º–ø—Ä–µ—Å—Å–æ—Ä–Ω—ã–µ —Å—Ç–∞–Ω—Ü–∏–∏ (–≤—Å–µ–≥–æ: " << css.size() << ") ===" << std::endl;
 		int index = 0;
 		for (const auto& pair : css) {
 			pair.second.displayInfo(index++);
 		}
 	}
 
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
@@ -89,34 +89,34 @@ void ViewAllObjects() {
 void EditPipe() {
 	if (pipes.empty()) {
 		system("cls");
-		std::cout << "Œ¯Ë·Í‡: “Û·˚ ÌÂ ‰Ó·‡‚ÎÂÌ˚!" << std::endl;
-		std::cout << "—Ì‡˜‡Î‡ ‰Ó·‡‚¸ÚÂ ÚÛ·˚ ˜ÂÂÁ ÏÂÌ˛." << std::endl;
-		std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+		std::cout << "–û—à–∏–±–∫–∞: –¢—Ä—É–±—ã –Ω–µ –¥–æ–±–∞–≤–ª–µ–Ω—ã!" << std::endl;
+		std::cout << "–°–Ω–∞—á–∞–ª–∞ –¥–æ–±–∞–≤—å—Ç–µ —Ç—Ä—É–±—ã —á–µ—Ä–µ–∑ –º–µ–Ω—é." << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 		std::cin.ignore(1000, '\n');
 		while (std::cin.get() != '\n');
 		return;
 	}
 
 	system("cls");
-	std::cout << "=== –Â‰‡ÍÚËÓ‚‡ÌËÂ ÚÛ·˚ ===" << std::endl;
-	std::cout << "¬˚·ÂËÚÂ ÚÛ·Û ‰Îˇ Â‰‡ÍÚËÓ‚‡ÌËˇ:" << std::endl;
+	std::cout << "=== –†–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞–Ω–∏–µ —Ç—Ä—É–±—ã ===" << std::endl;
+	std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ —Ç—Ä—É–±—É –¥–ª—è —Ä–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞–Ω–∏—è:" << std::endl;
 
 	int index = 1;
 	std::map<int, int> indexToID;
 
 	for (const auto& pair : pipes) {
 		std::cout << index << " - " << pair.second.getName()
-			<< " (ID: " << pair.first << ", ‰ÎËÌ‡: " << pair.second.getLength() << " ÍÏ)" << std::endl;
+			<< " (ID: " << pair.first << ", –¥–ª–∏–Ω–∞: " << pair.second.getLength() << " –∫–º)" << std::endl;
 		indexToID[index] = pair.first;
 		index++;
 	}
 
-	std::cout << "0 - ¬ÂÌÛÚ¸Òˇ ‚ ÏÂÌ˛" << std::endl;
-	std::cout << "¬˚·ÂËÚÂ ÚÛ·Û: ";
+	std::cout << "0 - –í–µ—Ä–Ω—É—Ç—å—Å—è –≤ –º–µ–Ω—é" << std::endl;
+	std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ —Ç—Ä—É–±—É: ";
 
 	int pipeChoice;
 	while (!(std::cin >> pipeChoice) || pipeChoice < 0 || pipeChoice >= index || std::cin.peek() != '\n') {
-		std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ ˜ËÒÎÓ ÓÚ 0 ‰Ó " << (index - 1) << ": ";
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —á–∏—Å–ª–æ –æ—Ç 0 –¥–æ " << (index - 1) << ": ";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 		logKeyboardInput(std::to_string(pipeChoice));
@@ -131,18 +131,18 @@ void EditPipe() {
 	Pipe& pipe = pipes[selectedID];
 
 	system("cls");
-	std::cout << "=== –Â‰‡ÍÚËÓ‚‡ÌËÂ ÚÛ·˚ ===" << std::endl;
-	std::cout << "“ÂÍÛ˘ËÂ ‰‡ÌÌ˚Â ÚÛ·˚ '" << pipe.getName() << "' (ID: " << selectedID << "):" << std::endl;
+	std::cout << "=== –†–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞–Ω–∏–µ —Ç—Ä—É–±—ã ===" << std::endl;
+	std::cout << "–¢–µ–∫—É—â–∏–µ –¥–∞–Ω–Ω—ã–µ —Ç—Ä—É–±—ã '" << pipe.getName() << "' (ID: " << selectedID << "):" << std::endl;
 	pipe.displayInfo();
 
-	std::cout << "\n◊ÚÓ ‚˚ ıÓÚËÚÂ ËÁÏÂÌËÚ¸?" << std::endl;
-	std::cout << "1 - »ÁÏÂÌËÚ¸ ÒÚ‡ÚÛÒ ÂÏÓÌÚ‡" << std::endl;
-	std::cout << "2 - ¬ÂÌÛÚ¸Òˇ ‚ ÏÂÌ˛" << std::endl;
-	std::cout << "¬˚·ÂËÚÂ ‰ÂÈÒÚ‚ËÂ: ";
+	std::cout << "\n–ß—Ç–æ –≤—ã —Ö–æ—Ç–∏—Ç–µ –∏–∑–º–µ–Ω–∏—Ç—å?" << std::endl;
+	std::cout << "1 - –ò–∑–º–µ–Ω–∏—Ç—å —Å—Ç–∞—Ç—É—Å —Ä–µ–º–æ–Ω—Ç–∞" << std::endl;
+	std::cout << "2 - –í–µ—Ä–Ω—É—Ç—å—Å—è –≤ –º–µ–Ω—é" << std::endl;
+	std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ –¥–µ–π—Å—Ç–≤–∏–µ: ";
 
 	int choice;
 	while (!(std::cin >> choice) || (choice != 1 && choice != 2) || std::cin.peek() != '\n') {
-		std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ 1 ËÎË 2: ";
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ 1 –∏–ª–∏ 2: ";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 		logKeyboardInput(std::to_string(choice));
@@ -150,12 +150,12 @@ void EditPipe() {
 	logKeyboardInput(std::to_string(choice));
 
 	if (choice == 1) {
-		std::cout << "“ÂÍÛ˘ËÈ ÒÚ‡ÚÛÒ: " << (pipe.getStatus() ? "¬ ÂÏÓÌÚÂ" : "–‡·ÓÚ‡ÂÚ") << std::endl;
-		std::cout << "»ÁÏÂÌËÚ¸ ÒÚ‡ÚÛÒ? (1 - ‰‡, 0 - ÌÂÚ): ";
+		std::cout << "–¢–µ–∫—É—â–∏–π —Å—Ç–∞—Ç—É—Å: " << (pipe.getStatus() ? "–í —Ä–µ–º–æ–Ω—Ç–µ" : "–†–∞–±–æ—Ç–∞–µ—Ç") << std::endl;
+		std::cout << "–ò–∑–º–µ–Ω–∏—Ç—å —Å—Ç–∞—Ç—É—Å? (1 - –¥–∞, 0 - –Ω–µ—Ç): ";
 
 		int change;
 		while (!(std::cin >> change) || (change != 0 && change != 1) || std::cin.peek() != '\n') {
-			std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ 0 ËÎË 1: ";
+			std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ 0 –∏–ª–∏ 1: ";
 			std::cin.clear();
 			std::cin.ignore(1000, '\n');
 			logKeyboardInput(std::to_string(change));
@@ -163,12 +163,12 @@ void EditPipe() {
 
 		if (change == 1) {
 			pipe.toggleStatus();
-			std::cout << "—Ú‡ÚÛÒ ËÁÏÂÌÂÌ. “ÂÔÂ¸ ÚÛ·‡ " << (pipe.getStatus() ? "‚ ÂÏÓÌÚÂ" : "‡·ÓÚ‡ÂÚ") << "!" << std::endl;
+			std::cout << "–°—Ç–∞—Ç—É—Å –∏–∑–º–µ–Ω–µ–Ω. –¢–µ–ø–µ—Ä—å —Ç—Ä—É–±–∞ " << (pipe.getStatus() ? "–≤ —Ä–µ–º–æ–Ω—Ç–µ" : "—Ä–∞–±–æ—Ç–∞–µ—Ç") << "!" << std::endl;
 		}
 		logKeyboardInput(std::to_string(change));
 	}
 
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
@@ -176,35 +176,35 @@ void EditPipe() {
 void EditCS() {
 	if (css.empty()) {
 		system("cls");
-		std::cout << "Œ¯Ë·Í‡:  — ÌÂ ‰Ó·‡‚ÎÂÌ˚!" << std::endl;
-		std::cout << "—Ì‡˜‡Î‡ ‰Ó·‡‚¸ÚÂ  — ˜ÂÂÁ ÏÂÌ˛." << std::endl;
-		std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+		std::cout << "–û—à–∏–±–∫–∞: –ö–° –Ω–µ –¥–æ–±–∞–≤–ª–µ–Ω—ã!" << std::endl;
+		std::cout << "–°–Ω–∞—á–∞–ª–∞ –¥–æ–±–∞–≤—å—Ç–µ –ö–° —á–µ—Ä–µ–∑ –º–µ–Ω—é." << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 		std::cin.ignore(1000, '\n');
 		while (std::cin.get() != '\n');
 		return;
 	}
 
 	system("cls");
-	std::cout << "=== –Â‰‡ÍÚËÓ‚‡ÌËÂ ÍÓÏÔÂÒÒÓÌÓÈ ÒÚ‡ÌˆËË ===" << std::endl;
-	std::cout << "¬˚·ÂËÚÂ  — ‰Îˇ Â‰‡ÍÚËÓ‚‡ÌËˇ:" << std::endl;
+	std::cout << "=== –†–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞–Ω–∏–µ –∫–æ–º–ø—Ä–µ—Å—Å–æ—Ä–Ω–æ–π —Å—Ç–∞–Ω—Ü–∏–∏ ===" << std::endl;
+	std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ –ö–° –¥–ª—è —Ä–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞–Ω–∏—è:" << std::endl;
 
 	int index = 1;
 	std::map<int, int> indexToID;
 
 	for (const auto& pair : css) {
 		std::cout << index << " - " << pair.second.getName()
-			<< " (ID: " << pair.first << ", ˆÂıÓ‚: " << pair.second.getNumberWorkOnline()
+			<< " (ID: " << pair.first << ", —Ü–µ—Ö–æ–≤: " << pair.second.getNumberWorkOnline()
 			<< "/" << pair.second.getNumberWork() << ")" << std::endl;
 		indexToID[index] = pair.first;
 		index++;
 	}
 
-	std::cout << "0 - ¬ÂÌÛÚ¸Òˇ ‚ ÏÂÌ˛" << std::endl;
-	std::cout << "¬˚·ÂËÚÂ  —: ";
+	std::cout << "0 - –í–µ—Ä–Ω—É—Ç—å—Å—è –≤ –º–µ–Ω—é" << std::endl;
+	std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ –ö–°: ";
 
 	int csChoice;
 	while (!(std::cin >> csChoice) || csChoice < 0 || csChoice >= index || std::cin.peek() != '\n') {
-		std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ ˜ËÒÎÓ ÓÚ 0 ‰Ó " << (index - 1) << ": ";
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —á–∏—Å–ª–æ –æ—Ç 0 –¥–æ " << (index - 1) << ": ";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 		logKeyboardInput(std::to_string(csChoice));
@@ -219,18 +219,18 @@ void EditCS() {
 	CS& cs = css[selectedID];
 
 	system("cls");
-	std::cout << "=== –Â‰‡ÍÚËÓ‚‡ÌËÂ ÍÓÏÔÂÒÒÓÌÓÈ ÒÚ‡ÌˆËË ===" << std::endl;
-	std::cout << "“ÂÍÛ˘ËÂ ‰‡ÌÌ˚Â  — '" << cs.getName() << "' (ID: " << selectedID << "):" << std::endl;
+	std::cout << "=== –†–µ–¥–∞–∫—Ç–∏—Ä–æ–≤–∞–Ω–∏–µ –∫–æ–º–ø—Ä–µ—Å—Å–æ—Ä–Ω–æ–π —Å—Ç–∞–Ω—Ü–∏–∏ ===" << std::endl;
+	std::cout << "–¢–µ–∫—É—â–∏–µ –¥–∞–Ω–Ω—ã–µ –ö–° '" << cs.getName() << "' (ID: " << selectedID << "):" << std::endl;
 	cs.displayInfo();
 
-	std::cout << "\n◊ÚÓ ‚˚ ıÓÚËÚÂ ËÁÏÂÌËÚ¸?" << std::endl;
-	std::cout << "1 - »ÁÏÂÌËÚ¸ ÍÓÎË˜ÂÒÚ‚Ó ‡·ÓÚ‡˛˘Ëı ˆÂıÓ‚" << std::endl;
-	std::cout << "2 - ¬ÂÌÛÚ¸Òˇ ‚ ÏÂÌ˛" << std::endl;
-	std::cout << "¬˚·ÂËÚÂ ‰ÂÈÒÚ‚ËÂ: ";
+	std::cout << "\n–ß—Ç–æ –≤—ã —Ö–æ—Ç–∏—Ç–µ –∏–∑–º–µ–Ω–∏—Ç—å?" << std::endl;
+	std::cout << "1 - –ò–∑–º–µ–Ω–∏—Ç—å –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ —Ä–∞–±–æ—Ç–∞—é—â–∏—Ö —Ü–µ—Ö–æ–≤" << std::endl;
+	std::cout << "2 - –í–µ—Ä–Ω—É—Ç—å—Å—è –≤ –º–µ–Ω—é" << std::endl;
+	std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ –¥–µ–π—Å—Ç–≤–∏–µ: ";
 
 	int choice;
 	while (!(std::cin >> choice) || (choice != 1 && choice != 2)) {
-		std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ 1 ËÎË 2: ";
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ 1 –∏–ª–∏ 2: ";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 		logKeyboardInput(std::to_string(choice));
@@ -238,16 +238,16 @@ void EditCS() {
 	logKeyboardInput(std::to_string(choice));
 
 	if (choice == 1) {
-		std::cout << "“ÂÍÛ˘ÂÂ ÒÓÒÚÓˇÌËÂ: " << cs.getNumberWorkOnline()
-			<< " ËÁ " << cs.getNumberWork() << " ˆÂıÓ‚ ‡·ÓÚ‡˛Ú" << std::endl;
-		std::cout << "1 - «‡ÔÛÒÚËÚ¸ ˆÂı" << std::endl;
-		std::cout << "2 - ŒÒÚ‡ÌÓ‚ËÚ¸ ˆÂı" << std::endl;
-		std::cout << "0 - ŒÚÏÂÌ‡" << std::endl;
-		std::cout << "¬˚·ÂËÚÂ ‰ÂÈÒÚ‚ËÂ: ";
+		std::cout << "–¢–µ–∫—É—â–µ–µ —Å–æ—Å—Ç–æ—è–Ω–∏–µ: " << cs.getNumberWorkOnline()
+			<< " –∏–∑ " << cs.getNumberWork() << " —Ü–µ—Ö–æ–≤ —Ä–∞–±–æ—Ç–∞—é—Ç" << std::endl;
+		std::cout << "1 - –ó–∞–ø—É—Å—Ç–∏—Ç—å —Ü–µ—Ö" << std::endl;
+		std::cout << "2 - –û—Å—Ç–∞–Ω–æ–≤–∏—Ç—å —Ü–µ—Ö" << std::endl;
+		std::cout << "0 - –û—Ç–º–µ–Ω–∞" << std::endl;
+		std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ –¥–µ–π—Å—Ç–≤–∏–µ: ";
 
 		int action;
 		while (!(std::cin >> action) || action < 0 || action > 2 || std::cin.peek() != '\n') {
-			std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ 0, 1 ËÎË 2: ";
+			std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ 0, 1 –∏–ª–∏ 2: ";
 			std::cin.clear();
 			std::cin.ignore(1000, '\n');
 			logKeyboardInput(std::to_string(action));
@@ -258,72 +258,72 @@ void EditCS() {
 		case 1:
 			if (cs.getNumberWorkOnline() < cs.getNumberWork()) {
 				cs.startWorkshop();
-				std::cout << "÷Âı Á‡ÔÛ˘ÂÌ! “ÂÔÂ¸ ‡·ÓÚ‡ÂÚ " << cs.getNumberWorkOnline()
-					<< " ËÁ " << cs.getNumberWork() << " ˆÂıÓ‚." << std::endl;
+				std::cout << "–¶–µ—Ö –∑–∞–ø—É—â–µ–Ω! –¢–µ–ø–µ—Ä—å —Ä–∞–±–æ—Ç–∞–µ—Ç " << cs.getNumberWorkOnline()
+					<< " –∏–∑ " << cs.getNumberWork() << " —Ü–µ—Ö–æ–≤." << std::endl;
 			}
 			else {
-				std::cout << "Œ¯Ë·Í‡: ¬ÒÂ ˆÂıË ÛÊÂ ‡·ÓÚ‡˛Ú!" << std::endl;
+				std::cout << "–û—à–∏–±–∫–∞: –í—Å–µ —Ü–µ—Ö–∏ —É–∂–µ —Ä–∞–±–æ—Ç–∞—é—Ç!" << std::endl;
 			}
 			break;
 
 		case 2:
 			if (cs.getNumberWorkOnline() > 0) {
 				cs.stopWorkshop();
-				std::cout << "÷Âı ÓÒÚ‡ÌÓ‚ÎÂÌ! “ÂÔÂ¸ ‡·ÓÚ‡ÂÚ " << cs.getNumberWorkOnline()
-					<< " ËÁ " << cs.getNumberWork() << " ˆÂıÓ‚." << std::endl;
+				std::cout << "–¶–µ—Ö –æ—Å—Ç–∞–Ω–æ–≤–ª–µ–Ω! –¢–µ–ø–µ—Ä—å —Ä–∞–±–æ—Ç–∞–µ—Ç " << cs.getNumberWorkOnline()
+					<< " –∏–∑ " << cs.getNumberWork() << " —Ü–µ—Ö–æ–≤." << std::endl;
 			}
 			else {
-				std::cout << "Œ¯Ë·Í‡: ÕÂÚ ‡·ÓÚ‡˛˘Ëı ˆÂıÓ‚!" << std::endl;
+				std::cout << "–û—à–∏–±–∫–∞: –ù–µ—Ç —Ä–∞–±–æ—Ç–∞—é—â–∏—Ö —Ü–µ—Ö–æ–≤!" << std::endl;
 			}
 			break;
 
 		case 0:
-			std::cout << "ŒÔÂ‡ˆËˇ ÓÚÏÂÌÂÌ‡." << std::endl;
+			std::cout << "–û–ø–µ—Ä–∞—Ü–∏—è –æ—Ç–º–µ–Ω–µ–Ω–∞." << std::endl;
 			break;
 		}
 	}
 
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
 
 void RemoveAnyObjectByID() {
 	system("cls");
-	std::cout << "=== ”‰‡ÎÂÌËÂ Î˛·Ó„Ó Ó·˙ÂÍÚ‡ ÔÓ ID ===" << std::endl;
+	std::cout << "=== –£–¥–∞–ª–µ–Ω–∏–µ –ª—é–±–æ–≥–æ –æ–±—ä–µ–∫—Ç–∞ –ø–æ ID ===" << std::endl;
 
 	if (pipes.empty() && css.empty()) {
-		std::cout << "Œ¯Ë·Í‡: Œ·˙ÂÍÚ˚ ÌÂ ‰Ó·‡‚ÎÂÌ˚!" << std::endl;
-		std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+		std::cout << "–û—à–∏–±–∫–∞: –û–±—ä–µ–∫—Ç—ã –Ω–µ –¥–æ–±–∞–≤–ª–µ–Ω—ã!" << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 		std::cin.ignore(1000, '\n');
 		while (std::cin.get() != '\n');
 		return;
 	}
 
-	std::cout << "—ÔËÒÓÍ ‚ÒÂı Ó·˙ÂÍÚÓ‚:" << std::endl;
+	std::cout << "–°–ø–∏—Å–æ–∫ –≤—Å–µ—Ö –æ–±—ä–µ–∫—Ç–æ–≤:" << std::endl;
 
 	if (!pipes.empty()) {
-		std::cout << "--- “Û·˚ ---" << std::endl;
+		std::cout << "--- –¢—Ä—É–±—ã ---" << std::endl;
 		for (const auto& pair : pipes) {
-			std::cout << "[“Û·‡] ID: " << pair.first << " - " << pair.second.getName();
+			std::cout << "[–¢—Ä—É–±–∞] ID: " << pair.first << " - " << pair.second.getName();
 			if (gasNetwork.isPipeUsedInNetwork(pair.first)) {
-				std::cout << " (»ÒÔÓÎ¸ÁÛÂÚÒˇ ‚ ÒÂÚË)";
+				std::cout << " (–ò—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –≤ —Å–µ—Ç–∏)";
 			}
 			std::cout << std::endl;
 		}
 	}
 
 	if (!css.empty()) {
-		std::cout << "---  — ---" << std::endl;
+		std::cout << "--- –ö–° ---" << std::endl;
 		for (const auto& pair : css) {
-			std::cout << "[ —] ID: " << pair.first << " - " << pair.second.getName() << std::endl;
+			std::cout << "[–ö–°] ID: " << pair.first << " - " << pair.second.getName() << std::endl;
 		}
 	}
 
-	std::cout << "\n¬‚Â‰ËÚÂ ID Ó·˙ÂÍÚ‡ ‰Îˇ Û‰‡ÎÂÌËˇ: ";
+	std::cout << "\n–í–≤–µ–¥–∏—Ç–µ ID –æ–±—ä–µ–∫—Ç–∞ –¥–ª—è —É–¥–∞–ª–µ–Ω–∏—è: ";
 	int idToDelete;
 	while (!(std::cin >> idToDelete) || idToDelete <= 0 || std::cin.peek() != '\n') {
-		std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ ÔÓÎÓÊËÚÂÎ¸ÌÓÂ ˆÂÎÓÂ ˜ËÒÎÓ: ";
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ –ø–æ–ª–æ–∂–∏—Ç–µ–ª—å–Ω–æ–µ —Ü–µ–ª–æ–µ —á–∏—Å–ª–æ: ";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 	}
@@ -336,17 +336,17 @@ void RemoveAnyObjectByID() {
 	auto pipeIt = pipes.find(idToDelete);
 	if (pipeIt != pipes.end()) {
 		if (gasNetwork.isPipeUsedInNetwork(idToDelete)) {
-			std::cout << "Œ¯Ë·Í‡: “Û·‡ '" << pipeIt->second.getName()
-				<< "' ËÒÔÓÎ¸ÁÛÂÚÒˇ ‚ „‡ÁÓÚ‡ÌÒÔÓÚÌÓÈ ÒÂÚË Ë ÌÂ ÏÓÊÂÚ ·˚Ú¸ Û‰‡ÎÂÌ‡!" << std::endl;
-			std::cout << "—Ì‡˜‡Î‡ ÓÚÍÎ˛˜ËÚÂ ÚÛ·Û ÓÚ ÒÂÚË ˜ÂÂÁ ÒÓÓÚ‚ÂÚÒÚ‚Û˛˘ÂÂ ÏÂÌ˛." << std::endl;
+			std::cout << "–û—à–∏–±–∫–∞: –¢—Ä—É–±–∞ '" << pipeIt->second.getName()
+				<< "' –∏—Å–ø–æ–ª—å–∑—É–µ—Ç—Å—è –≤ –≥–∞–∑–æ—Ç—Ä–∞–Ω—Å–ø–æ—Ä—Ç–Ω–æ–π —Å–µ—Ç–∏ –∏ –Ω–µ –º–æ–∂–µ—Ç –±—ã—Ç—å —É–¥–∞–ª–µ–Ω–∞!" << std::endl;
+			std::cout << "–°–Ω–∞—á–∞–ª–∞ –æ—Ç–∫–ª—é—á–∏—Ç–µ —Ç—Ä—É–±—É –æ—Ç —Å–µ—Ç–∏ —á–µ—Ä–µ–∑ —Å–æ–æ—Ç–≤–µ—Ç—Å—Ç–≤—É—é—â–µ–µ –º–µ–Ω—é." << std::endl;
 
-			std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+			std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 			std::cin.ignore(1000, '\n');
 			while (std::cin.get() != '\n');
 			return;
 		}
 
-		objectType = "“Û·‡";
+		objectType = "–¢—Ä—É–±–∞";
 		objectName = pipeIt->second.getName();
 		pipes.erase(pipeIt);
 		found = true;
@@ -355,7 +355,7 @@ void RemoveAnyObjectByID() {
 	if (!found) {
 		auto csIt = css.find(idToDelete);
 		if (csIt != css.end()) {
-			objectType = " —";
+			objectType = "–ö–°";
 			objectName = csIt->second.getName();
 			css.erase(csIt);
 			found = true;
@@ -363,29 +363,29 @@ void RemoveAnyObjectByID() {
 	}
 
 	if (found) {
-		std::cout << objectType << " '" << objectName << "' Ò ID " << idToDelete << " ÛÒÔÂ¯ÌÓ Û‰‡ÎÂÌ‡!" << std::endl;
-		std::cout << "ŒÒÚ‡ÎÓÒ¸ ÚÛ·: " << pipes.size() << ",  —: " << css.size() << std::endl;
+		std::cout << objectType << " '" << objectName << "' —Å ID " << idToDelete << " —É—Å–ø–µ—à–Ω–æ —É–¥–∞–ª–µ–Ω–∞!" << std::endl;
+		std::cout << "–û—Å—Ç–∞–ª–æ—Å—å —Ç—Ä—É–±: " << pipes.size() << ", –ö–°: " << css.size() << std::endl;
 	}
 	else {
-		std::cout << "Œ·˙ÂÍÚ Ò ID " << idToDelete << " ÌÂ Ì‡È‰ÂÌ!" << std::endl;
+		std::cout << "–û–±—ä–µ–∫—Ç —Å ID " << idToDelete << " –Ω–µ –Ω–∞–π–¥–µ–Ω!" << std::endl;
 	}
 
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
 
 void SaveToCustomFile() {
 	system("cls");
-	std::cout << "=== —Óı‡ÌÂÌËÂ ‚ Ù‡ÈÎ ===" << std::endl;
+	std::cout << "=== –°–æ—Ö—Ä–∞–Ω–µ–Ω–∏–µ –≤ —Ñ–∞–π–ª ===" << std::endl;
 
 	std::string filename;
-	std::cout << "¬‚Â‰ËÚÂ Ì‡Á‚‡ÌËÂ Ù‡ÈÎ‡ ‰Îˇ ÒÓı‡ÌÂÌËˇ (Ì‡ÔËÏÂ: data.txt): ";
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ –Ω–∞–∑–≤–∞–Ω–∏–µ —Ñ–∞–π–ª–∞ –¥–ª—è —Å–æ—Ö—Ä–∞–Ω–µ–Ω–∏—è (–Ω–∞–ø—Ä–∏–º–µ—Ä: data.txt): ";
 	std::cin.ignore(1000, '\n');
 	std::getline(std::cin, filename);
 
 	while (filename.empty() || filename.find_first_not_of(' ') == std::string::npos) {
-		std::cout << "Œ¯Ë·Í‡! »Ïˇ Ù‡ÈÎ‡ ÌÂ ÏÓÊÂÚ ·˚Ú¸ ÔÛÒÚ˚Ï. ¬‚Â‰ËÚÂ ÒÌÓ‚‡: ";
+		std::cout << "–û—à–∏–±–∫–∞! –ò–º—è —Ñ–∞–π–ª–∞ –Ω–µ –º–æ–∂–µ—Ç –±—ã—Ç—å –ø—É—Å—Ç—ã–º. –í–≤–µ–¥–∏—Ç–µ —Å–Ω–æ–≤–∞: ";
 		std::getline(std::cin, filename);
 		logKeyboardInput(filename);
 	}
@@ -394,8 +394,8 @@ void SaveToCustomFile() {
 	std::ofstream outFile(filename);
 
 	if (!outFile.is_open()) {
-		std::cout << "Œ¯Ë·Í‡: ÕÂ Û‰‡ÎÓÒ¸ ÒÓÁ‰‡Ú¸ ËÎË ÓÚÍ˚Ú¸ Ù‡ÈÎ '" << filename << "'!" << std::endl;
-		std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+		std::cout << "–û—à–∏–±–∫–∞: –ù–µ —É–¥–∞–ª–æ—Å—å —Å–æ–∑–¥–∞—Ç—å –∏–ª–∏ –æ—Ç–∫—Ä—ã—Ç—å —Ñ–∞–π–ª '" << filename << "'!" << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 		std::cin.ignore(1000, '\n');
 		while (std::cin.get() != '\n');
 		return;
@@ -405,10 +405,10 @@ void SaveToCustomFile() {
 	outFile << "======================================" << std::endl << std::endl;
 
 	if (pipes.empty()) {
-		outFile << "“Û·˚: ÌÂ ‰Ó·‡‚ÎÂÌ˚" << std::endl << std::endl;
+		outFile << "–¢—Ä—É–±—ã: –Ω–µ –¥–æ–±–∞–≤–ª–µ–Ω—ã" << std::endl << std::endl;
 	}
 	else {
-		outFile << "“Û·˚ (‚ÒÂ„Ó: " << pipes.size() << "):" << std::endl;
+		outFile << "–¢—Ä—É–±—ã (–≤—Å–µ–≥–æ: " << pipes.size() << "):" << std::endl;
 		int index = 0;
 		for (const auto& pair : pipes) {
 			pair.second.saveToFile(outFile, index++);
@@ -416,10 +416,10 @@ void SaveToCustomFile() {
 	}
 
 	if (css.empty()) {
-		outFile << " —: ÌÂ ‰Ó·‡‚ÎÂÌ˚" << std::endl << std::endl;
+		outFile << "–ö–°: –Ω–µ –¥–æ–±–∞–≤–ª–µ–Ω—ã" << std::endl << std::endl;
 	}
 	else {
-		outFile << " ÓÏÔÂÒÒÓÌ˚Â ÒÚ‡ÌˆËË (‚ÒÂ„Ó: " << css.size() << "):" << std::endl;
+		outFile << "–ö–æ–º–ø—Ä–µ—Å—Å–æ—Ä–Ω—ã–µ —Å—Ç–∞–Ω—Ü–∏–∏ (–≤—Å–µ–≥–æ: " << css.size() << "):" << std::endl;
 		int index = 0;
 		for (const auto& pair : css) {
 			pair.second.saveToFile(outFile, index++);
@@ -428,33 +428,33 @@ void SaveToCustomFile() {
 
 	outFile.close();
 
-	std::cout << "ƒ‡ÌÌ˚Â ÛÒÔÂ¯ÌÓ ÒÓı‡ÌÂÌ˚ ‚ Ù‡ÈÎ '" << filename << "'!" << std::endl;
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–î–∞–Ω–Ω—ã–µ —É—Å–ø–µ—à–Ω–æ —Å–æ—Ö—Ä–∞–Ω–µ–Ω—ã –≤ —Ñ–∞–π–ª '" << filename << "'!" << std::endl;
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
 
 void LoadFromCustomFile() {
 	system("cls");
-	std::cout << "=== «‡„ÛÁÍ‡ ËÁ Ù‡ÈÎ‡ ===" << std::endl;
+	std::cout << "=== –ó–∞–≥—Ä—É–∑–∫–∞ –∏–∑ —Ñ–∞–π–ª–∞ ===" << std::endl;
 
 	std::string filename;
-	std::cout << "¬‚Â‰ËÚÂ Ì‡Á‚‡ÌËÂ Ù‡ÈÎ‡ ‰Îˇ Á‡„ÛÁÍË (Ì‡ÔËÏÂ: data.txt): ";
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ –Ω–∞–∑–≤–∞–Ω–∏–µ —Ñ–∞–π–ª–∞ –¥–ª—è –∑–∞–≥—Ä—É–∑–∫–∏ (–Ω–∞–ø—Ä–∏–º–µ—Ä: data.txt): ";
 	std::cin.ignore(1000, '\n');
 	std::getline(std::cin, filename);
 	logKeyboardInput(filename);
 
 	while (filename.empty() || filename.find_first_not_of(' ') == std::string::npos) {
-		std::cout << "Œ¯Ë·Í‡! »Ïˇ Ù‡ÈÎ‡ ÌÂ ÏÓÊÂÚ ·˚Ú¸ ÔÛÒÚ˚Ï. ¬‚Â‰ËÚÂ ÒÌÓ‚‡: ";
+		std::cout << "–û—à–∏–±–∫–∞! –ò–º—è —Ñ–∞–π–ª–∞ –Ω–µ –º–æ–∂–µ—Ç –±—ã—Ç—å –ø—É—Å—Ç—ã–º. –í–≤–µ–¥–∏—Ç–µ —Å–Ω–æ–≤–∞: ";
 		std::getline(std::cin, filename);
 	}
 
 	std::ifstream inFile(filename);
 
 	if (!inFile.is_open()) {
-		std::cout << "Œ¯Ë·Í‡: ÕÂ Û‰‡ÎÓÒ¸ ÓÚÍ˚Ú¸ Ù‡ÈÎ '" << filename << "'!" << std::endl;
-		std::cout << "œÓ‚Â¸ÚÂ Ô‡‚ËÎ¸ÌÓÒÚ¸ ËÏÂÌË Ù‡ÈÎ‡ Ë Â„Ó ÒÛ˘ÂÒÚ‚Ó‚‡ÌËÂ." << std::endl;
-		std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+		std::cout << "–û—à–∏–±–∫–∞: –ù–µ —É–¥–∞–ª–æ—Å—å –æ—Ç–∫—Ä—ã—Ç—å —Ñ–∞–π–ª '" << filename << "'!" << std::endl;
+		std::cout << "–ü—Ä–æ–≤–µ—Ä—å—Ç–µ –ø—Ä–∞–≤–∏–ª—å–Ω–æ—Å—Ç—å –∏–º–µ–Ω–∏ —Ñ–∞–π–ª–∞ –∏ –µ–≥–æ —Å—É—â–µ—Å—Ç–≤–æ–≤–∞–Ω–∏–µ." << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 		std::cin.ignore(1000, '\n');
 		while (std::cin.get() != '\n');
 		return;
@@ -489,7 +489,7 @@ void LoadFromCustomFile() {
 			continue;
 		}
 
-		if (line.find("“Û·‡ #") != std::string::npos) {
+		if (line.find("–¢—Ä—É–±–∞ #") != std::string::npos) {
 			if (readingPipe && !currentPipe.getName().empty()) {
 				pipes[currentPipe.getID()] = currentPipe;
 				currentPipe = Pipe();
@@ -499,7 +499,7 @@ void LoadFromCustomFile() {
 			continue;
 		}
 
-		if (line.find(" — #") != std::string::npos) {
+		if (line.find("–ö–° #") != std::string::npos) {
 			if (readingCS && !currentCS.getName().empty()) {
 				css[currentCS.getID()] = currentCS;
 				currentCS = CS();
@@ -517,7 +517,7 @@ void LoadFromCustomFile() {
 						currentPipe.setID(std::stoi(value));
 					}
 					catch (const std::exception& e) {
-						std::cout << "Œ¯Ë·Í‡ ˜ÚÂÌËˇ ID ÚÛ·˚: " << e.what() << std::endl;
+						std::cout << "–û—à–∏–±–∫–∞ —á—Ç–µ–Ω–∏—è ID —Ç—Ä—É–±—ã: " << e.what() << std::endl;
 					}
 				}
 			}
@@ -538,7 +538,7 @@ void LoadFromCustomFile() {
 						currentPipe.setLength(std::stof(value));
 					}
 					catch (const std::exception& e) {
-						std::cout << "Œ¯Ë·Í‡ ˜ÚÂÌËˇ ‰ÎËÌ˚ ÚÛ·˚: " << e.what() << std::endl;
+						std::cout << "–û—à–∏–±–∫–∞ —á—Ç–µ–Ω–∏—è –¥–ª–∏–Ω—ã —Ç—Ä—É–±—ã: " << e.what() << std::endl;
 					}
 				}
 			}
@@ -553,7 +553,7 @@ void LoadFromCustomFile() {
 						currentPipe.setDiameter(std::stoi(value));
 					}
 					catch (const std::exception& e) {
-						std::cout << "Œ¯Ë·Í‡ ˜ÚÂÌËˇ ‰Ë‡ÏÂÚ‡ ÚÛ·˚: " << e.what() << std::endl;
+						std::cout << "–û—à–∏–±–∫–∞ —á—Ç–µ–Ω–∏—è –¥–∏–∞–º–µ—Ç—Ä–∞ —Ç—Ä—É–±—ã: " << e.what() << std::endl;
 					}
 				}
 			}
@@ -576,7 +576,7 @@ void LoadFromCustomFile() {
 						currentCS.setID(std::stoi(value));
 					}
 					catch (const std::exception& e) {
-						std::cout << "Œ¯Ë·Í‡ ˜ÚÂÌËˇ ID  —: " << e.what() << std::endl;
+						std::cout << "–û—à–∏–±–∫–∞ —á—Ç–µ–Ω–∏—è ID –ö–°: " << e.what() << std::endl;
 					}
 				}
 			}
@@ -593,7 +593,7 @@ void LoadFromCustomFile() {
 						currentCS.setNumberWork(std::stoi(value));
 					}
 					catch (const std::exception& e) {
-						std::cout << "Œ¯Ë·Í‡ ˜ÚÂÌËˇ ÍÓÎË˜ÂÒÚ‚‡ ˆÂıÓ‚: " << e.what() << std::endl;
+						std::cout << "–û—à–∏–±–∫–∞ —á—Ç–µ–Ω–∏—è –∫–æ–ª–∏—á–µ—Å—Ç–≤–∞ —Ü–µ—Ö–æ–≤: " << e.what() << std::endl;
 					}
 				}
 			}
@@ -604,7 +604,7 @@ void LoadFromCustomFile() {
 						currentCS.setNumberWorkOnline(std::stoi(value));
 					}
 					catch (const std::exception& e) {
-						std::cout << "Œ¯Ë·Í‡ ˜ÚÂÌËˇ ‡·ÓÚ‡˛˘Ëı ˆÂıÓ‚: " << e.what() << std::endl;
+						std::cout << "–û—à–∏–±–∫–∞ —á—Ç–µ–Ω–∏—è —Ä–∞–±–æ—Ç–∞—é—â–∏—Ö —Ü–µ—Ö–æ–≤: " << e.what() << std::endl;
 					}
 				}
 			}
@@ -626,30 +626,30 @@ void LoadFromCustomFile() {
 
 	inFile.close();
 
-	std::cout << "ƒ‡ÌÌ˚Â ÛÒÔÂ¯ÌÓ Á‡„ÛÊÂÌ˚ ËÁ Ù‡ÈÎ‡ '" << filename << "'!" << std::endl;
-	std::cout << "«‡„ÛÊÂÌÓ ÚÛ·: " << pipes.size() << ",  —: " << css.size() << std::endl;
+	std::cout << "–î–∞–Ω–Ω—ã–µ —É—Å–ø–µ—à–Ω–æ –∑–∞–≥—Ä—É–∂–µ–Ω—ã –∏–∑ —Ñ–∞–π–ª–∞ '" << filename << "'!" << std::endl;
+	std::cout << "–ó–∞–≥—Ä—É–∂–µ–Ω–æ —Ç—Ä—É–±: " << pipes.size() << ", –ö–°: " << css.size() << std::endl;
 
 	for (auto& pair : css) {
 		CS& cs = pair.second;
 		if (cs.getNumberWorkOnline() > cs.getNumberWork()) {
-			std::cout << "œÂ‰ÛÔÂÊ‰ÂÌËÂ: ”  — '" << cs.getName()
-				<< "' ËÒÔ‡‚ÎÂÌÓ ÍÓÎË˜ÂÒÚ‚Ó ‡·ÓÚ‡˛˘Ëı ˆÂıÓ‚." << std::endl;
+			std::cout << "–ü—Ä–µ–¥—É–ø—Ä–µ–∂–¥–µ–Ω–∏–µ: –£ –ö–° '" << cs.getName()
+				<< "' –∏—Å–ø—Ä–∞–≤–ª–µ–Ω–æ –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ —Ä–∞–±–æ—Ç–∞—é—â–∏—Ö —Ü–µ—Ö–æ–≤." << std::endl;
 			cs.setNumberWorkOnline(cs.getNumberWork());
 		}
 	}
 
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
 
 void SearchCS() {
 	system("cls");
-	std::cout << "=== œÓËÒÍ  — ÔÓ ÙËÎ¸Ú‡Ï ===" << std::endl;
+	std::cout << "=== –ü–æ–∏—Å–∫ –ö–° –ø–æ —Ñ–∏–ª—å—Ç—Ä–∞–º ===" << std::endl;
 
 	if (css.empty()) {
-		std::cout << "Œ¯Ë·Í‡:  — ÌÂ ‰Ó·‡‚ÎÂÌ˚!" << std::endl;
-		std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+		std::cout << "–û—à–∏–±–∫–∞: –ö–° –Ω–µ –¥–æ–±–∞–≤–ª–µ–Ω—ã!" << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 		std::cin.ignore(1000, '\n');
 		while (std::cin.get() != '\n');
 		return;
@@ -658,16 +658,16 @@ void SearchCS() {
 	std::string searchName;
 	double minUnusedPercent = -1.0;
 
-	std::cout << "¬‚Â‰ËÚÂ Ì‡Á‚‡ÌËÂ  — ‰Îˇ ÔÓËÒÍ‡ (ËÎË ÓÒÚ‡‚¸ÚÂ ÔÛÒÚ˚Ï ‰Îˇ ÔÓÔÛÒÍ‡): ";
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ –Ω–∞–∑–≤–∞–Ω–∏–µ –ö–° –¥–ª—è –ø–æ–∏—Å–∫–∞ (–∏–ª–∏ –æ—Å—Ç–∞–≤—å—Ç–µ –ø—É—Å—Ç—ã–º –¥–ª—è –ø—Ä–æ–ø—É—Å–∫–∞): ";
 	std::cin.ignore(1000, '\n');
 	std::getline(std::cin, searchName);
 	logKeyboardInput(searchName);
 
-	std::cout << "‘ËÎ¸Ú ÔÓ ÔÓˆÂÌÚÛ ÌÂÁ‡‰ÂÈÒÚ‚Ó‚‡ÌÌ˚ı ˆÂıÓ‚:" << std::endl;
-	std::cout << "¬‚Â‰ËÚÂ ÏËÌËÏ‡Î¸Ì˚È ÔÓˆÂÌÚ ÌÂÁ‡‰ÂÈÒÚ‚Ó‚‡ÌÌ˚ı ˆÂıÓ‚ (0-100) ËÎË -1 ‰Îˇ ÔÓÔÛÒÍ‡: ";
+	std::cout << "–§–∏–ª—å—Ç—Ä –ø–æ –ø—Ä–æ—Ü–µ–Ω—Ç—É –Ω–µ–∑–∞–¥–µ–π—Å—Ç–≤–æ–≤–∞–Ω–Ω—ã—Ö —Ü–µ—Ö–æ–≤:" << std::endl;
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ –º–∏–Ω–∏–º–∞–ª—å–Ω—ã–π –ø—Ä–æ—Ü–µ–Ω—Ç –Ω–µ–∑–∞–¥–µ–π—Å—Ç–≤–æ–≤–∞–Ω–Ω—ã—Ö —Ü–µ—Ö–æ–≤ (0-100) –∏–ª–∏ -1 –¥–ª—è –ø—Ä–æ–ø—É—Å–∫–∞: ";
 
 	while (!(std::cin >> minUnusedPercent) || (minUnusedPercent != -1 && (minUnusedPercent < 0 || minUnusedPercent > 100)) || std::cin.peek() != '\n') {
-		std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ ˜ËÒÎÓ ÓÚ 0 ‰Ó 100 ËÎË -1 ‰Îˇ ÔÓÔÛÒÍ‡: ";
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —á–∏—Å–ª–æ –æ—Ç 0 –¥–æ 100 –∏–ª–∏ -1 –¥–ª—è –ø—Ä–æ–ø—É—Å–∫–∞: ";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 	}
@@ -706,26 +706,26 @@ void SearchCS() {
 	}
 
 	if (results.empty()) {
-		std::cout << " — ÔÓ Á‡‰‡ÌÌ˚Ï ÍËÚÂËˇÏ ÌÂ Ì‡È‰ÂÌ˚." << std::endl;
+		std::cout << "–ö–° –ø–æ –∑–∞–¥–∞–Ω–Ω—ã–º –∫—Ä–∏—Ç–µ—Ä–∏—è–º –Ω–µ –Ω–∞–π–¥–µ–Ω—ã." << std::endl;
 	}
 	else {
-		std::cout << "=== –ÂÁÛÎ¸Ú‡Ú˚ ÔÓËÒÍ‡ ===" << std::endl;
-		std::cout << "Õ‡È‰ÂÌÓ  —: " << results.size() << std::endl;
+		std::cout << "=== –†–µ–∑—É–ª—å—Ç–∞—Ç—ã –ø–æ–∏—Å–∫–∞ ===" << std::endl;
+		std::cout << "–ù–∞–π–¥–µ–Ω–æ –ö–°: " << results.size() << std::endl;
 		for (size_t i = 0; i < results.size(); i++) {
 			const auto& cs = results[i];
 			cs.displayInfo(i);
 			if (cs.getNumberWork() > 0) {
 				double unusedPercent = (1.0 - (double)cs.getNumberWorkOnline() / cs.getNumberWork()) * 100.0;
-				std::cout << " œÓˆÂÌÚ ÌÂÁ‡‰ÂÈÒÚ‚Ó‚‡ÌÌ˚ı ˆÂıÓ‚: " << std::fixed << std::setprecision(1) << unusedPercent << "%" << std::endl;
+				std::cout << " –ü—Ä–æ—Ü–µ–Ω—Ç –Ω–µ–∑–∞–¥–µ–π—Å—Ç–≤–æ–≤–∞–Ω–Ω—ã—Ö —Ü–µ—Ö–æ–≤: " << std::fixed << std::setprecision(1) << unusedPercent << "%" << std::endl;
 			}
 			else {
-				std::cout << " œÓˆÂÌÚ ÌÂÁ‡‰ÂÈÒÚ‚Ó‚‡ÌÌ˚ı ˆÂıÓ‚: 100% (ÌÂÚ ˆÂıÓ‚)" << std::endl;
+				std::cout << " –ü—Ä–æ—Ü–µ–Ω—Ç –Ω–µ–∑–∞–¥–µ–π—Å—Ç–≤–æ–≤–∞–Ω–Ω—ã—Ö —Ü–µ—Ö–æ–≤: 100% (–Ω–µ—Ç —Ü–µ—Ö–æ–≤)" << std::endl;
 			}
 			std::cout << std::endl;
 		}
 	}
 
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
@@ -747,7 +747,7 @@ void BatchDeletePipes(const std::vector<int>& pipeIDs) {
 	for (int id : pipeIDs) {
 		auto it = pipes.find(id);
 		if (it != pipes.end()) {
-			std::cout << "”‰‡ÎÂÌ‡ ÚÛ·‡: " << it->second.getName() << " (ID: " << it->first << ")" << std::endl;
+			std::cout << "–£–¥–∞–ª–µ–Ω–∞ —Ç—Ä—É–±–∞: " << it->second.getName() << " (ID: " << it->first << ")" << std::endl;
 			pipes.erase(it);
 		}
 	}
@@ -755,11 +755,11 @@ void BatchDeletePipes(const std::vector<int>& pipeIDs) {
 
 void SearchPipesWithBatchOperations() {
 	system("cls");
-	std::cout << "=== œÓËÒÍ ÚÛ· ÔÓ ÙËÎ¸Ú‡Ï Ò Ô‡ÍÂÚÌ˚ÏË ÓÔÂ‡ˆËˇÏË ===" << std::endl;
+	std::cout << "=== –ü–æ–∏—Å–∫ —Ç—Ä—É–± –ø–æ —Ñ–∏–ª—å—Ç—Ä–∞–º —Å –ø–∞–∫–µ—Ç–Ω—ã–º–∏ –æ–ø–µ—Ä–∞—Ü–∏—è–º–∏ ===" << std::endl;
 
 	if (pipes.empty()) {
-		std::cout << "Œ¯Ë·Í‡: “Û·˚ ÌÂ ‰Ó·‡‚ÎÂÌ˚!" << std::endl;
-		std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+		std::cout << "–û—à–∏–±–∫–∞: –¢—Ä—É–±—ã –Ω–µ –¥–æ–±–∞–≤–ª–µ–Ω—ã!" << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 		std::cin.ignore(1000, '\n');
 		while (std::cin.get() != '\n');
 		return;
@@ -768,19 +768,19 @@ void SearchPipesWithBatchOperations() {
 	std::string searchName;
 	int repairStatus = -1;
 
-	std::cout << "¬‚Â‰ËÚÂ Ì‡Á‚‡ÌËÂ ÚÛ·˚ ‰Îˇ ÔÓËÒÍ‡ (ËÎË ÓÒÚ‡‚¸ÚÂ ÔÛÒÚ˚Ï ‰Îˇ ÔÓÔÛÒÍ‡): ";
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ –Ω–∞–∑–≤–∞–Ω–∏–µ —Ç—Ä—É–±—ã –¥–ª—è –ø–æ–∏—Å–∫–∞ (–∏–ª–∏ –æ—Å—Ç–∞–≤—å—Ç–µ –ø—É—Å—Ç—ã–º –¥–ª—è –ø—Ä–æ–ø—É—Å–∫–∞): ";
 	std::cin.ignore(1000, '\n');
 	std::getline(std::cin, searchName);
 	logKeyboardInput(searchName);
 
-	std::cout << "‘ËÎ¸Ú ÔÓ ÒÚ‡ÚÛÒÛ ÂÏÓÌÚ‡:" << std::endl;
-	std::cout << "0 - “ÓÎ¸ÍÓ ‡·ÓÚ‡˛˘ËÂ ÚÛ·˚" << std::endl;
-	std::cout << "1 - “ÓÎ¸ÍÓ ÚÛ·˚ ‚ ÂÏÓÌÚÂ" << std::endl;
-	std::cout << "2 - À˛·ÓÈ ÒÚ‡ÚÛÒ (ÔÓÔÛÒÚËÚ¸ ÙËÎ¸Ú)" << std::endl;
-	std::cout << "¬˚·ÂËÚÂ ÙËÎ¸Ú: ";
+	std::cout << "–§–∏–ª—å—Ç—Ä –ø–æ —Å—Ç–∞—Ç—É—Å—É —Ä–µ–º–æ–Ω—Ç–∞:" << std::endl;
+	std::cout << "0 - –¢–æ–ª—å–∫–æ —Ä–∞–±–æ—Ç–∞—é—â–∏–µ —Ç—Ä—É–±—ã" << std::endl;
+	std::cout << "1 - –¢–æ–ª—å–∫–æ —Ç—Ä—É–±—ã –≤ —Ä–µ–º–æ–Ω—Ç–µ" << std::endl;
+	std::cout << "2 - –õ—é–±–æ–π —Å—Ç–∞—Ç—É—Å (–ø—Ä–æ–ø—É—Å—Ç–∏—Ç—å —Ñ–∏–ª—å—Ç—Ä)" << std::endl;
+	std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ —Ñ–∏–ª—å—Ç—Ä: ";
 
 	while (!(std::cin >> repairStatus) || repairStatus < 0 || repairStatus > 2 || std::cin.peek() != '\n') {
-		std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ ˜ËÒÎÓ ÓÚ 0 ‰Ó 2: ";
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —á–∏—Å–ª–æ –æ—Ç 0 –¥–æ 2: ";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 		logKeyboardInput(std::to_string(repairStatus));
@@ -817,31 +817,31 @@ void SearchPipesWithBatchOperations() {
 	}
 
 	if (results.empty()) {
-		std::cout << "“Û·˚ ÔÓ Á‡‰‡ÌÌ˚Ï ÍËÚÂËˇÏ ÌÂ Ì‡È‰ÂÌ˚." << std::endl;
-		std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+		std::cout << "–¢—Ä—É–±—ã –ø–æ –∑–∞–¥–∞–Ω–Ω—ã–º –∫—Ä–∏—Ç–µ—Ä–∏—è–º –Ω–µ –Ω–∞–π–¥–µ–Ω—ã." << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 		std::cin.ignore(1000, '\n');
 		while (std::cin.get() != '\n');
 		return;
 	}
 
-	std::cout << "=== –ÂÁÛÎ¸Ú‡Ú˚ ÔÓËÒÍ‡ ===" << std::endl;
-	std::cout << "Õ‡È‰ÂÌÓ ÚÛ·: " << results.size() << std::endl;
+	std::cout << "=== –†–µ–∑—É–ª—å—Ç–∞—Ç—ã –ø–æ–∏—Å–∫–∞ ===" << std::endl;
+	std::cout << "–ù–∞–π–¥–µ–Ω–æ —Ç—Ä—É–±: " << results.size() << std::endl;
 	for (int i = 0; i < results.size(); i++) {
 		results[i].displayInfo(i);
 	}
 
 	int batchChoice;
 	do {
-		std::cout << "\n=== œ‡ÍÂÚÌ˚Â ÓÔÂ‡ˆËË ===" << std::endl;
-		std::cout << "1. »ÁÏÂÌËÚ¸ ÒÚ‡ÚÛÒ ÂÏÓÌÚ‡ ‰Îˇ ‚ÒÂı Ì‡È‰ÂÌÌ˚ı ÚÛ·" << std::endl;
-		std::cout << "2. ”‰‡ÎËÚ¸ ‚ÒÂ Ì‡È‰ÂÌÌ˚Â ÚÛ·˚" << std::endl;
-		std::cout << "3. ¬˚·‡Ú¸ ÍÓÌÍÂÚÌ˚Â ÚÛ·˚ ‰Îˇ ËÁÏÂÌÂÌËˇ ÒÚ‡ÚÛÒ‡" << std::endl;
-		std::cout << "4. ¬˚·‡Ú¸ ÍÓÌÍÂÚÌ˚Â ÚÛ·˚ ‰Îˇ Û‰‡ÎÂÌËˇ" << std::endl;
-		std::cout << "0. ¬ÂÌÛÚ¸Òˇ ‚ „Î‡‚ÌÓÂ ÏÂÌ˛" << std::endl;
-		std::cout << "¬˚·ÂËÚÂ ÓÔÂ‡ˆË˛: ";
+		std::cout << "\n=== –ü–∞–∫–µ—Ç–Ω—ã–µ –æ–ø–µ—Ä–∞—Ü–∏–∏ ===" << std::endl;
+		std::cout << "1. –ò–∑–º–µ–Ω–∏—Ç—å —Å—Ç–∞—Ç—É—Å —Ä–µ–º–æ–Ω—Ç–∞ –¥–ª—è –≤—Å–µ—Ö –Ω–∞–π–¥–µ–Ω–Ω—ã—Ö —Ç—Ä—É–±" << std::endl;
+		std::cout << "2. –£–¥–∞–ª–∏—Ç—å –≤—Å–µ –Ω–∞–π–¥–µ–Ω–Ω—ã–µ —Ç—Ä—É–±—ã" << std::endl;
+		std::cout << "3. –í—ã–±—Ä–∞—Ç—å –∫–æ–Ω–∫—Ä–µ—Ç–Ω—ã–µ —Ç—Ä—É–±—ã –¥–ª—è –∏–∑–º–µ–Ω–µ–Ω–∏—è —Å—Ç–∞—Ç—É—Å–∞" << std::endl;
+		std::cout << "4. –í—ã–±—Ä–∞—Ç—å –∫–æ–Ω–∫—Ä–µ—Ç–Ω—ã–µ —Ç—Ä—É–±—ã –¥–ª—è —É–¥–∞–ª–µ–Ω–∏—è" << std::endl;
+		std::cout << "0. –í–µ—Ä–Ω—É—Ç—å—Å—è –≤ –≥–ª–∞–≤–Ω–æ–µ –º–µ–Ω—é" << std::endl;
+		std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ –æ–ø–µ—Ä–∞—Ü–∏—é: ";
 
 		while (!(std::cin >> batchChoice) || batchChoice < 0 || batchChoice > 4 || std::cin.peek() != '\n') {
-			std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ ˜ËÒÎÓ ÓÚ 0 ‰Ó 4: ";
+			std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —á–∏—Å–ª–æ –æ—Ç 0 –¥–æ 4: ";
 			std::cin.clear();
 			std::cin.ignore(1000, '\n');
 			logKeyboardInput(std::to_string(batchChoice));
@@ -850,14 +850,14 @@ void SearchPipesWithBatchOperations() {
 
 		switch (batchChoice) {
 		case 1: {
-			std::cout << "”ÒÚ‡ÌÓ‚ËÚ¸ ÒÚ‡ÚÛÒ ‰Îˇ ‚ÒÂı Ì‡È‰ÂÌÌ˚ı ÚÛ·:" << std::endl;
-			std::cout << "0 - –‡·ÓÚ‡ÂÚ" << std::endl;
-			std::cout << "1 - ¬ ÂÏÓÌÚÂ" << std::endl;
-			std::cout << "¬˚·ÂËÚÂ ÒÚ‡ÚÛÒ: ";
+			std::cout << "–£—Å—Ç–∞–Ω–æ–≤–∏—Ç—å —Å—Ç–∞—Ç—É—Å –¥–ª—è –≤—Å–µ—Ö –Ω–∞–π–¥–µ–Ω–Ω—ã—Ö —Ç—Ä—É–±:" << std::endl;
+			std::cout << "0 - –†–∞–±–æ—Ç–∞–µ—Ç" << std::endl;
+			std::cout << "1 - –í —Ä–µ–º–æ–Ω—Ç–µ" << std::endl;
+			std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ —Å—Ç–∞—Ç—É—Å: ";
 
 			int newStatus;
 			while (!(std::cin >> newStatus) || (newStatus != 0 && newStatus != 1) || std::cin.peek() != '\n') {
-				std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ 0 ËÎË 1: ";
+				std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ 0 –∏–ª–∏ 1: ";
 				std::cin.clear();
 				std::cin.ignore(1000, '\n');
 				logKeyboardInput(std::to_string(newStatus));
@@ -865,19 +865,19 @@ void SearchPipesWithBatchOperations() {
 			logKeyboardInput(std::to_string(newStatus));
 
 			BatchChangePipeStatus(foundIDs, newStatus == 1);
-			std::cout << "—Ú‡ÚÛÒ ËÁÏÂÌÂÌ ‰Îˇ " << foundIDs.size() << " ÚÛ·." << std::endl;
+			std::cout << "–°—Ç–∞—Ç—É—Å –∏–∑–º–µ–Ω–µ–Ω –¥–ª—è " << foundIDs.size() << " —Ç—Ä—É–±." << std::endl;
 			break;
 		}
 
 		case 2: {
-			std::cout << "¬˚ Û‚ÂÂÌ˚, ˜ÚÓ ıÓÚËÚÂ Û‰‡ÎËÚ¸ ‚ÒÂ " << foundIDs.size() << " Ì‡È‰ÂÌÌ˚ı ÚÛ·?" << std::endl;
-			std::cout << "1 - ƒ‡, Û‰‡ÎËÚ¸ ‚ÒÂ" << std::endl;
-			std::cout << "0 - ÕÂÚ, ÓÚÏÂÌËÚ¸" << std::endl;
-			std::cout << "¬˚·ÂËÚÂ ‰ÂÈÒÚ‚ËÂ: ";
+			std::cout << "–í—ã —É–≤–µ—Ä–µ–Ω—ã, —á—Ç–æ —Ö–æ—Ç–∏—Ç–µ —É–¥–∞–ª–∏—Ç—å –≤—Å–µ " << foundIDs.size() << " –Ω–∞–π–¥–µ–Ω–Ω—ã—Ö —Ç—Ä—É–±?" << std::endl;
+			std::cout << "1 - –î–∞, —É–¥–∞–ª–∏—Ç—å –≤—Å–µ" << std::endl;
+			std::cout << "0 - –ù–µ—Ç, –æ—Ç–º–µ–Ω–∏—Ç—å" << std::endl;
+			std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ –¥–µ–π—Å—Ç–≤–∏–µ: ";
 
 			int confirm;
 			while (!(std::cin >> confirm) || (confirm != 0 && confirm != 1) || std::cin.peek() != '\n') {
-				std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ 0 ËÎË 1: ";
+				std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ 0 –∏–ª–∏ 1: ";
 				std::cin.clear();
 				std::cin.ignore(1000, '\n');
 				logKeyboardInput(std::to_string(confirm));
@@ -886,22 +886,22 @@ void SearchPipesWithBatchOperations() {
 
 			if (confirm == 1) {
 				BatchDeletePipes(foundIDs);
-				std::cout << "”‰‡ÎÂÌÓ " << foundIDs.size() << " ÚÛ·." << std::endl;
+				std::cout << "–£–¥–∞–ª–µ–Ω–æ " << foundIDs.size() << " —Ç—Ä—É–±." << std::endl;
 				foundIDs.clear();
 			}
 			else {
-				std::cout << "”‰‡ÎÂÌËÂ ÓÚÏÂÌÂÌÓ." << std::endl;
+				std::cout << "–£–¥–∞–ª–µ–Ω–∏–µ –æ—Ç–º–µ–Ω–µ–Ω–æ." << std::endl;
 			}
 			break;
 		}
 
 		case 3: {
 			if (foundIDs.empty()) {
-				std::cout << "ÕÂÚ ‰ÓÒÚÛÔÌ˚ı ÚÛ· ‰Îˇ ‚˚·Ó‡." << std::endl;
+				std::cout << "–ù–µ—Ç –¥–æ—Å—Ç—É–ø–Ω—ã—Ö —Ç—Ä—É–± –¥–ª—è –≤—ã–±–æ—Ä–∞." << std::endl;
 				break;
 			}
 
-			std::cout << "¬‚Â‰ËÚÂ ID ÚÛ· ‰Îˇ ËÁÏÂÌÂÌËˇ ÒÚ‡ÚÛÒ‡ (˜ÂÂÁ ÔÓ·ÂÎ): ";
+			std::cout << "–í–≤–µ–¥–∏—Ç–µ ID —Ç—Ä—É–± –¥–ª—è –∏–∑–º–µ–Ω–µ–Ω–∏—è —Å—Ç–∞—Ç—É—Å–∞ (—á–µ—Ä–µ–∑ –ø—Ä–æ–±–µ–ª): ";
 			std::cin.ignore(1000, '\n');
 			std::string input;
 			std::getline(std::cin, input);
@@ -914,19 +914,19 @@ void SearchPipesWithBatchOperations() {
 					selectedIDs.push_back(id);
 				}
 				else {
-					std::cout << "ID " << id << " ÌÂ Ì‡È‰ÂÌ ‚ ÂÁÛÎ¸Ú‡Ú‡ı ÔÓËÒÍ‡." << std::endl;
+					std::cout << "ID " << id << " –Ω–µ –Ω–∞–π–¥–µ–Ω –≤ —Ä–µ–∑—É–ª—å—Ç–∞—Ç–∞—Ö –ø–æ–∏—Å–∫–∞." << std::endl;
 				}
 			}
 
 			if (!selectedIDs.empty()) {
-				std::cout << "”ÒÚ‡ÌÓ‚ËÚ¸ ÒÚ‡ÚÛÒ ‰Îˇ ‚˚·‡ÌÌ˚ı ÚÛ·:" << std::endl;
-				std::cout << "0 - –‡·ÓÚ‡ÂÚ" << std::endl;
-				std::cout << "1 - ¬ ÂÏÓÌÚÂ" << std::endl;
-				std::cout << "¬˚·ÂËÚÂ ÒÚ‡ÚÛÒ: ";
+				std::cout << "–£—Å—Ç–∞–Ω–æ–≤–∏—Ç—å —Å—Ç–∞—Ç—É—Å –¥–ª—è –≤—ã–±—Ä–∞–Ω–Ω—ã—Ö —Ç—Ä—É–±:" << std::endl;
+				std::cout << "0 - –†–∞–±–æ—Ç–∞–µ—Ç" << std::endl;
+				std::cout << "1 - –í —Ä–µ–º–æ–Ω—Ç–µ" << std::endl;
+				std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ —Å—Ç–∞—Ç—É—Å: ";
 
 				int newStatus;
 				while (!(std::cin >> newStatus) || (newStatus != 0 && newStatus != 1) || std::cin.peek() != '\n') {
-					std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ 0 ËÎË 1: ";
+					std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ 0 –∏–ª–∏ 1: ";
 					std::cin.clear();
 					std::cin.ignore(1000, '\n');
 					logKeyboardInput(std::to_string(newStatus));
@@ -934,18 +934,18 @@ void SearchPipesWithBatchOperations() {
 				logKeyboardInput(std::to_string(newStatus));
 
 				BatchChangePipeStatus(selectedIDs, newStatus == 1);
-				std::cout << "—Ú‡ÚÛÒ ËÁÏÂÌÂÌ ‰Îˇ " << selectedIDs.size() << " ÚÛ·." << std::endl;
+				std::cout << "–°—Ç–∞—Ç—É—Å –∏–∑–º–µ–Ω–µ–Ω –¥–ª—è " << selectedIDs.size() << " —Ç—Ä—É–±." << std::endl;
 			}
 			break;
 		}
 
 		case 4: {
 			if (foundIDs.empty()) {
-				std::cout << "ÕÂÚ ‰ÓÒÚÛÔÌ˚ı ÚÛ· ‰Îˇ ‚˚·Ó‡." << std::endl;
+				std::cout << "–ù–µ—Ç –¥–æ—Å—Ç—É–ø–Ω—ã—Ö —Ç—Ä—É–± –¥–ª—è –≤—ã–±–æ—Ä–∞." << std::endl;
 				break;
 			}
 
-			std::cout << "¬‚Â‰ËÚÂ ID ÚÛ· ‰Îˇ Û‰‡ÎÂÌËˇ (˜ÂÂÁ ÔÓ·ÂÎ): ";
+			std::cout << "–í–≤–µ–¥–∏—Ç–µ ID —Ç—Ä—É–± –¥–ª—è —É–¥–∞–ª–µ–Ω–∏—è (—á–µ—Ä–µ–∑ –ø—Ä–æ–±–µ–ª): ";
 			std::cin.ignore(1000, '\n');
 			std::string input;
 			std::getline(std::cin, input);
@@ -958,19 +958,19 @@ void SearchPipesWithBatchOperations() {
 					selectedIDs.push_back(id);
 				}
 				else {
-					std::cout << "ID " << id << " ÌÂ Ì‡È‰ÂÌ ‚ ÂÁÛÎ¸Ú‡Ú‡ı ÔÓËÒÍ‡." << std::endl;
+					std::cout << "ID " << id << " –Ω–µ –Ω–∞–π–¥–µ–Ω –≤ —Ä–µ–∑—É–ª—å—Ç–∞—Ç–∞—Ö –ø–æ–∏—Å–∫–∞." << std::endl;
 				}
 			}
 
 			if (!selectedIDs.empty()) {
-				std::cout << "¬˚ Û‚ÂÂÌ˚, ˜ÚÓ ıÓÚËÚÂ Û‰‡ÎËÚ¸ " << selectedIDs.size() << " ÚÛ·?" << std::endl;
-				std::cout << "1 - ƒ‡, Û‰‡ÎËÚ¸" << std::endl;
-				std::cout << "0 - ÕÂÚ, ÓÚÏÂÌËÚ¸" << std::endl;
-				std::cout << "¬˚·ÂËÚÂ ‰ÂÈÒÚ‚ËÂ: ";
+				std::cout << "–í—ã —É–≤–µ—Ä–µ–Ω—ã, —á—Ç–æ —Ö–æ—Ç–∏—Ç–µ —É–¥–∞–ª–∏—Ç—å " << selectedIDs.size() << " —Ç—Ä—É–±?" << std::endl;
+				std::cout << "1 - –î–∞, —É–¥–∞–ª–∏—Ç—å" << std::endl;
+				std::cout << "0 - –ù–µ—Ç, –æ—Ç–º–µ–Ω–∏—Ç—å" << std::endl;
+				std::cout << "–í—ã–±–µ—Ä–∏—Ç–µ –¥–µ–π—Å—Ç–≤–∏–µ: ";
 
 				int confirm;
 				while (!(std::cin >> confirm) || (confirm != 0 && confirm != 1) || std::cin.peek() != '\n') {
-					std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ 0 ËÎË 1: ";
+					std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ 0 –∏–ª–∏ 1: ";
 					std::cin.clear();
 					std::cin.ignore(1000, '\n');
 					logKeyboardInput(std::to_string(confirm));
@@ -979,7 +979,7 @@ void SearchPipesWithBatchOperations() {
 
 				if (confirm == 1) {
 					BatchDeletePipes(selectedIDs);
-					std::cout << "”‰‡ÎÂÌÓ " << selectedIDs.size() << " ÚÛ·." << std::endl;
+					std::cout << "–£–¥–∞–ª–µ–Ω–æ " << selectedIDs.size() << " —Ç—Ä—É–±." << std::endl;
 
 					for (int id : selectedIDs) {
 						auto it = std::find(foundIDs.begin(), foundIDs.end(), id);
@@ -989,14 +989,14 @@ void SearchPipesWithBatchOperations() {
 					}
 				}
 				else {
-					std::cout << "”‰‡ÎÂÌËÂ ÓÚÏÂÌÂÌÓ." << std::endl;
+					std::cout << "–£–¥–∞–ª–µ–Ω–∏–µ –æ—Ç–º–µ–Ω–µ–Ω–æ." << std::endl;
 				}
 			}
 			break;
 		}
 
 		case 0:
-			std::cout << "¬ÓÁ‚‡Ú ‚ „Î‡‚ÌÓÂ ÏÂÌ˛..." << std::endl;
+			std::cout << "–í–æ–∑–≤—Ä–∞—Ç –≤ –≥–ª–∞–≤–Ω–æ–µ –º–µ–Ω—é..." << std::endl;
 			break;
 		}
 
@@ -1010,11 +1010,11 @@ void SearchPipesWithBatchOperations() {
 			}
 
 			if (results.empty()) {
-				std::cout << "¡ÓÎ¸¯Â ÌÂÚ ÚÛ·, ÒÓÓÚ‚ÂÚÒÚ‚Û˛˘Ëı ÍËÚÂËˇÏ ÔÓËÒÍ‡." << std::endl;
+				std::cout << "–ë–æ–ª—å—à–µ –Ω–µ—Ç —Ç—Ä—É–±, —Å–æ–æ—Ç–≤–µ—Ç—Å—Ç–≤—É—é—â–∏—Ö –∫—Ä–∏—Ç–µ—Ä–∏—è–º –ø–æ–∏—Å–∫–∞." << std::endl;
 				break;
 			}
 			else {
-				std::cout << "\nŒ·ÌÓ‚ÎÂÌÌ˚Â ÂÁÛÎ¸Ú‡Ú˚ ÔÓËÒÍ‡ (" << results.size() << " ÚÛ·):" << std::endl;
+				std::cout << "\n–û–±–Ω–æ–≤–ª–µ–Ω–Ω—ã–µ —Ä–µ–∑—É–ª—å—Ç–∞—Ç—ã –ø–æ–∏—Å–∫–∞ (" << results.size() << " —Ç—Ä—É–±):" << std::endl;
 				for (int i = 0; i < results.size(); i++) {
 					results[i].displayInfo(i);
 				}
@@ -1023,62 +1023,62 @@ void SearchPipesWithBatchOperations() {
 
 	} while (batchChoice != 0);
 
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
 
 void ConnectCSWithPipe() {
 	system("cls");
-	std::cout << "=== —ÓÂ‰ËÌÂÌËÂ  — ÚÛ·ÓÈ ===" << std::endl;
+	std::cout << "=== –°–æ–µ–¥–∏–Ω–µ–Ω–∏–µ –ö–° —Ç—Ä—É–±–æ–π ===" << std::endl;
 
 	if (css.size() < 2) {
-		std::cout << "Œ¯Ë·Í‡: ƒÎˇ ÒÓÂ‰ËÌÂÌËˇ ÌÂÓ·ıÓ‰ËÏÓ Í‡Í ÏËÌËÏÛÏ 2  —!" << std::endl;
-		std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+		std::cout << "–û—à–∏–±–∫–∞: –î–ª—è —Å–æ–µ–¥–∏–Ω–µ–Ω–∏—è –Ω–µ–æ–±—Ö–æ–¥–∏–º–æ –∫–∞–∫ –º–∏–Ω–∏–º—É–º 2 –ö–°!" << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 		std::cin.ignore(1000, '\n');
 		while (std::cin.get() != '\n');
 		return;
 	}
 
-	std::cout << "ƒÓÒÚÛÔÌ˚Â  —:" << std::endl;
+	std::cout << "–î–æ—Å—Ç—É–ø–Ω—ã–µ –ö–°:" << std::endl;
 	for (const auto& csPair : css) {
 		std::cout << "ID: " << csPair.first << " - " << csPair.second.getName() << std::endl;
 	}
 
 	int sourceCS, destinationCS, diameter;
 
-	std::cout << "¬‚Â‰ËÚÂ ID  — ‚ıÓ‰‡: ";
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ ID –ö–° –≤—Ö–æ–¥–∞: ";
 	while (!(std::cin >> sourceCS) || css.find(sourceCS) == css.end()) {
-		std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ ÒÛ˘ÂÒÚ‚Û˛˘ËÈ ID  —: ";
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —Å—É—â–µ—Å—Ç–≤—É—é—â–∏–π ID –ö–°: ";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 	}
 
-	std::cout << "¬‚Â‰ËÚÂ ID  — ‚˚ıÓ‰‡: ";
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ ID –ö–° –≤—ã—Ö–æ–¥–∞: ";
 	while (!(std::cin >> destinationCS) || css.find(destinationCS) == css.end() || destinationCS == sourceCS) {
 		if (destinationCS == sourceCS) {
-			std::cout << "Œ¯Ë·Í‡!  — ‚ıÓ‰‡ Ë ‚˚ıÓ‰‡ ÌÂ ÏÓ„ÛÚ ÒÓ‚Ô‡‰‡Ú¸. ¬‚Â‰ËÚÂ ‰Û„ÓÈ ID: ";
+			std::cout << "–û—à–∏–±–∫–∞! –ö–° –≤—Ö–æ–¥–∞ –∏ –≤—ã—Ö–æ–¥–∞ –Ω–µ –º–æ–≥—É—Ç —Å–æ–≤–ø–∞–¥–∞—Ç—å. –í–≤–µ–¥–∏—Ç–µ –¥—Ä—É–≥–æ–π ID: ";
 		}
 		else {
-			std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ ÒÛ˘ÂÒÚ‚Û˛˘ËÈ ID  —: ";
+			std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —Å—É—â–µ—Å—Ç–≤—É—é—â–∏–π ID –ö–°: ";
 		}
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 	}
 
-	std::cout << "ƒÓÒÚÛÔÌ˚Â ‰Ë‡ÏÂÚ˚: 500, 700, 1000, 1400 ÏÏ" << std::endl;
-	std::cout << "¬‚Â‰ËÚÂ ‰Ë‡ÏÂÚ ÚÛ·˚: ";
+	std::cout << "–î–æ—Å—Ç—É–ø–Ω—ã–µ –¥–∏–∞–º–µ—Ç—Ä—ã: 500, 700, 1000, 1400 –º–º" << std::endl;
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ –¥–∏–∞–º–µ—Ç—Ä —Ç—Ä—É–±—ã: ";
 	while (!(std::cin >> diameter)) {
-		std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ ˆÂÎÓÂ ˜ËÒÎÓ: ";
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —Ü–µ–ª–æ–µ —á–∏—Å–ª–æ: ";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 	}
 
 	if (!gasNetwork.connectCS(sourceCS, destinationCS, diameter)) {
-		std::cout << "ÕÂ Û‰‡ÎÓÒ¸ ÒÓÁ‰‡Ú¸ ÒÓÂ‰ËÌÂÌËÂ." << std::endl;
+		std::cout << "–ù–µ —É–¥–∞–ª–æ—Å—å —Å–æ–∑–¥–∞—Ç—å —Å–æ–µ–¥–∏–Ω–µ–Ω–∏–µ." << std::endl;
 	}
 
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
@@ -1086,55 +1086,213 @@ void ConnectCSWithPipe() {
 void DisplayGasNetwork() {
 	system("cls");
 	gasNetwork.displayNetwork();
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
 
 void DisconnectPipeFromNetwork() {
 	system("cls");
-	std::cout << "=== ŒÚÍÎ˛˜ÂÌËÂ ÚÛ·˚ ÓÚ ÒÂÚË ===" << std::endl;
+	std::cout << "=== –û—Ç–∫–ª—é—á–µ–Ω–∏–µ —Ç—Ä—É–±—ã –æ—Ç —Å–µ—Ç–∏ ===" << std::endl;
 
-	std::cout << "¬‚Â‰ËÚÂ ID ÚÛ·˚ ‰Îˇ ÓÚÍÎ˛˜ÂÌËˇ: ";
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ ID —Ç—Ä—É–±—ã –¥–ª—è –æ—Ç–∫–ª—é—á–µ–Ω–∏—è: ";
 	int pipeID;
 	while (!(std::cin >> pipeID) || pipeID <= 0) {
-		std::cout << "Œ¯Ë·Í‡! ¬‚Â‰ËÚÂ ÔÓÎÓÊËÚÂÎ¸ÌÓÂ ˆÂÎÓÂ ˜ËÒÎÓ: ";
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ –ø–æ–ª–æ–∂–∏—Ç–µ–ª—å–Ω–æ–µ —Ü–µ–ª–æ–µ —á–∏—Å–ª–æ: ";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 	}
 
 	if (!gasNetwork.disconnectPipe(pipeID)) {
-		std::cout << "“Û·‡ Ò ID " << pipeID << " ÌÂ Ì‡È‰ÂÌ‡ ‚ ÒÂÚË ËÎË ÌÂ ÒÛ˘ÂÒÚ‚ÛÂÚ." << std::endl;
+		std::cout << "–¢—Ä—É–±–∞ —Å ID " << pipeID << " –Ω–µ –Ω–∞–π–¥–µ–Ω–∞ –≤ —Å–µ—Ç–∏ –∏–ª–∏ –Ω–µ —Å—É—â–µ—Å—Ç–≤—É–µ—Ç." << std::endl;
 	}
 
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }
 
 void TopologicalSort() {
 	system("cls");
-	std::cout << "=== “ÓÔÓÎÓ„Ë˜ÂÒÍ‡ˇ ÒÓÚËÓ‚Í‡ „‡ÁÓÚ‡ÌÒÔÓÚÌÓÈ ÒÂÚË ===" << std::endl;
+	std::cout << "=== –¢–æ–ø–æ–ª–æ–≥–∏—á–µ—Å–∫–∞—è —Å–æ—Ä—Ç–∏—Ä–æ–≤–∫–∞ –≥–∞–∑–æ—Ç—Ä–∞–Ω—Å–ø–æ—Ä—Ç–Ω–æ–π —Å–µ—Ç–∏ ===" << std::endl;
 
 	std::vector<int> sorted = gasNetwork.topologicalSort();
 
 	if (sorted.empty()) {
-		std::cout << "—ÂÚ¸ ÔÛÒÚ‡ ËÎË ÒÓ‰ÂÊËÚ ˆËÍÎ˚." << std::endl;
+		std::cout << "–°–µ—Ç—å –ø—É—Å—Ç–∞ –∏–ª–∏ —Å–æ–¥–µ—Ä–∂–∏—Ç —Ü–∏–∫–ª—ã." << std::endl;
 	}
 	else {
-		std::cout << "“ÓÔÓÎÓ„Ë˜ÂÒÍËÈ ÔÓˇ‰ÓÍ  —:" << std::endl;
+		std::cout << "–¢–æ–ø–æ–ª–æ–≥–∏—á–µ—Å–∫–∏–π –ø–æ—Ä—è–¥–æ–∫ –ö–°:" << std::endl;
 		for (size_t i = 0; i < sorted.size(); ++i) {
 			auto it = css.find(sorted[i]);
 			if (it != css.end()) {
-				std::cout << i + 1 << ".  — " << sorted[i] << " - " << it->second.getName() << std::endl;
+				std::cout << i + 1 << ". –ö–° " << sorted[i] << " - " << it->second.getName() << std::endl;
 			}
 			else {
-				std::cout << i + 1 << ".  — " << sorted[i] << " (ÌÂ Ì‡È‰ÂÌ‡ ‚ ·‡ÁÂ)" << std::endl;
+				std::cout << i + 1 << ". –ö–° " << sorted[i] << " (–Ω–µ –Ω–∞–π–¥–µ–Ω–∞ –≤ –±–∞–∑–µ)" << std::endl;
 			}
 		}
 	}
 
-	std::cout << "Õ‡ÊÏËÚÂ Enter ‰Îˇ ÔÓ‰ÓÎÊÂÌËˇ...";
+	std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
+	std::cin.ignore(1000, '\n');
+	while (std::cin.get() != '\n');
+}
+
+void CalculateMaxFlow() {
+	system("cls");
+	std::cout << "=== –†–∞—Å—á–µ—Ç –º–∞–∫—Å–∏–º–∞–ª—å–Ω–æ–≥–æ –ø–æ—Ç–æ–∫–∞ –º–µ–∂–¥—É –ö–° ===" << std::endl;
+
+	if (css.size() < 2) {
+		std::cout << "–û—à–∏–±–∫–∞: –î–ª—è —Ä–∞—Å—á–µ—Ç–∞ –ø–æ—Ç–æ–∫–∞ –Ω–µ–æ–±—Ö–æ–¥–∏–º–æ –∫–∞–∫ –º–∏–Ω–∏–º—É–º 2 –ö–°!" << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
+		std::cin.ignore(1000, '\n');
+		while (std::cin.get() != '\n');
+		return;
+	}
+
+	std::cout << "–î–æ—Å—Ç—É–ø–Ω—ã–µ –ö–°:" << std::endl;
+	for (const auto& csPair : css) {
+		std::cout << "ID: " << csPair.first << " - " << csPair.second.getName() << std::endl;
+	}
+
+	int sourceID, sinkID;
+
+	std::cout << "\n–í–≤–µ–¥–∏—Ç–µ ID –ö–°-–∏—Å—Ç–æ—á–Ω–∏–∫–∞: ";
+	while (!(std::cin >> sourceID) || css.find(sourceID) == css.end()) {
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —Å—É—â–µ—Å—Ç–≤—É—é—â–∏–π ID –ö–°: ";
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+	}
+
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ ID –ö–°-—Å—Ç–æ–∫–∞: ";
+	while (!(std::cin >> sinkID) || css.find(sinkID) == css.end() || sinkID == sourceID) {
+		if (sinkID == sourceID) {
+			std::cout << "–û—à–∏–±–∫–∞! –ò—Å—Ç–æ—á–Ω–∏–∫ –∏ —Å—Ç–æ–∫ –Ω–µ –º–æ–≥—É—Ç —Å–æ–≤–ø–∞–¥–∞—Ç—å. –í–≤–µ–¥–∏—Ç–µ –¥—Ä—É–≥–æ–π ID: ";
+		}
+		else {
+			std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —Å—É—â–µ—Å—Ç–≤—É—é—â–∏–π ID –ö–°: ";
+		}
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+	}
+
+	double maxFlow = gasNetwork.calculateMaxFlow(sourceID, sinkID);
+
+	std::cout << "\n=== –†–µ–∑—É–ª—å—Ç–∞—Ç—ã —Ä–∞—Å—á–µ—Ç–∞ ===" << std::endl;
+	std::cout << "–ò—Å—Ç–æ—á–Ω–∏–∫: –ö–° " << sourceID << " (" << css.find(sourceID)->second.getName() << ")" << std::endl;
+	std::cout << "–°—Ç–æ–∫: –ö–° " << sinkID << " (" << css.find(sinkID)->second.getName() << ")" << std::endl;
+	std::cout << "–ú–∞–∫—Å–∏–º–∞–ª—å–Ω—ã–π –ø–æ—Ç–æ–∫: " << std::fixed << std::setprecision(2) << maxFlow << " –º¬≥/—á" << std::endl;
+
+	if (maxFlow == 0.0) {
+		std::cout << "–ü—Ä–∏–º–µ—á–∞–Ω–∏–µ: –ü–æ—Ç–æ–∫ —Ä–∞–≤–µ–Ω 0. –í–æ–∑–º–æ–∂–Ω—ã–µ –ø—Ä–∏—á–∏–Ω—ã:" << std::endl;
+		std::cout << "1. –ù–µ—Ç –ø—É—Ç–∏ –º–µ–∂–¥—É –≤—ã–±—Ä–∞–Ω–Ω—ã–º–∏ –ö–°" << std::endl;
+		std::cout << "2. –í—Å–µ —Ç—Ä—É–±—ã –Ω–∞ –ø—É—Ç–∏ –Ω–∞—Ö–æ–¥—è—Ç—Å—è –≤ —Ä–µ–º–æ–Ω—Ç–µ" << std::endl;
+		std::cout << "3. –°–µ—Ç—å –Ω–µ —Å–æ–¥–µ—Ä–∂–∏—Ç —Å–æ–µ–¥–∏–Ω–µ–Ω–∏–π –º–µ–∂–¥—É —ç—Ç–∏–º–∏ –ö–°" << std::endl;
+	}
+
+	std::cout << "\n–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
+	std::cin.ignore(1000, '\n');
+	while (std::cin.get() != '\n');
+}
+
+void FindShortestPath() {
+	system("cls");
+	std::cout << "=== –ü–æ–∏—Å–∫ –∫—Ä–∞—Ç—á–∞–π—à–µ–≥–æ –ø—É—Ç–∏ –º–µ–∂–¥—É –ö–° ===" << std::endl;
+
+	if (css.size() < 2) {
+		std::cout << "–û—à–∏–±–∫–∞: –î–ª—è –ø–æ–∏—Å–∫–∞ –ø—É—Ç–∏ –Ω–µ–æ–±—Ö–æ–¥–∏–º–æ –∫–∞–∫ –º–∏–Ω–∏–º—É–º 2 –ö–°!" << std::endl;
+		std::cout << "–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
+		std::cin.ignore(1000, '\n');
+		while (std::cin.get() != '\n');
+		return;
+	}
+
+	std::cout << "–î–æ—Å—Ç—É–ø–Ω—ã–µ –ö–°:" << std::endl;
+	for (const auto& csPair : css) {
+		std::cout << "ID: " << csPair.first << " - " << csPair.second.getName() << std::endl;
+	}
+
+	int startID, endID;
+
+	std::cout << "\n–í–≤–µ–¥–∏—Ç–µ ID –Ω–∞—á–∞–ª—å–Ω–æ–π –ö–°: ";
+	while (!(std::cin >> startID) || css.find(startID) == css.end()) {
+		std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —Å—É—â–µ—Å—Ç–≤—É—é—â–∏–π ID –ö–°: ";
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+	}
+
+	std::cout << "–í–≤–µ–¥–∏—Ç–µ ID –∫–æ–Ω–µ—á–Ω–æ–π –ö–°: ";
+	while (!(std::cin >> endID) || css.find(endID) == css.end() || endID == startID) {
+		if (endID == startID) {
+			std::cout << "–û—à–∏–±–∫–∞! –ù–∞—á–∞–ª—å–Ω–∞—è –∏ –∫–æ–Ω–µ—á–Ω–∞—è –ö–° –Ω–µ –º–æ–≥—É—Ç —Å–æ–≤–ø–∞–¥–∞—Ç—å. –í–≤–µ–¥–∏—Ç–µ –¥—Ä—É–≥–æ–π ID: ";
+		}
+		else {
+			std::cout << "–û—à–∏–±–∫–∞! –í–≤–µ–¥–∏—Ç–µ —Å—É—â–µ—Å—Ç–≤—É—é—â–∏–π ID –ö–°: ";
+		}
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+	}
+
+	auto result = gasNetwork.findShortestPath(startID, endID);
+	double distance = result.first;
+	const std::vector<int>& path = result.second;
+
+	std::cout << "\n=== –†–µ–∑—É–ª—å—Ç–∞—Ç—ã –ø–æ–∏—Å–∫–∞ ===" << std::endl;
+	std::cout << "–ù–∞—á–∞–ª—å–Ω–∞—è –ö–°: " << startID << " (" << css.find(startID)->second.getName() << ")" << std::endl;
+	std::cout << "–ö–æ–Ω–µ—á–Ω–∞—è –ö–°: " << endID << " (" << css.find(endID)->second.getName() << ")" << std::endl;
+	double infinityValue = GasNetwork::getInfinity();
+	if (distance == infinityValue) {
+		std::cout << "–ü—É—Ç—å –Ω–µ –Ω–∞–π–¥–µ–Ω!" << std::endl;
+		std::cout << "–í–æ–∑–º–æ–∂–Ω—ã–µ –ø—Ä–∏—á–∏–Ω—ã:" << std::endl;
+		std::cout << "1. –ù–µ—Ç —Å–æ–µ–¥–∏–Ω–µ–Ω–∏—è –º–µ–∂–¥—É –≤—ã–±—Ä–∞–Ω–Ω—ã–º–∏ –ö–°" << std::endl;
+		std::cout << "2. –í—Å–µ –≤–æ–∑–º–æ–∂–Ω—ã–µ –ø—É—Ç–∏ —Å–æ–¥–µ—Ä–∂–∞—Ç —Ç—Ä—É–±—ã –≤ —Ä–µ–º–æ–Ω—Ç–µ" << std::endl;
+	}
+	else {
+		std::cout << "–î–ª–∏–Ω–∞ –∫—Ä–∞—Ç—á–∞–π—à–µ–≥–æ –ø—É—Ç–∏: " << std::fixed << std::setprecision(2) << distance << " –∫–º" << std::endl;
+		std::cout << "–ú–∞—Ä—à—Ä—É—Ç: ";
+
+		for (size_t i = 0; i < path.size(); i++) {
+			auto csIt = css.find(path[i]);
+			std::cout << "–ö–° " << path[i];
+			if (csIt != css.end()) {
+				std::cout << " (" << csIt->second.getName() << ")";
+			}
+
+			if (i < path.size() - 1) {
+				std::cout << " -> ";
+			}
+		}
+		std::cout << std::endl;
+
+		std::cout << "\n–î–µ—Ç–∞–ª–∏ –º–∞—Ä—à—Ä—É—Ç–∞:" << std::endl;
+		for (size_t i = 0; i < path.size() - 1; i++) {
+			int u = path[i];
+			int v = path[i + 1];
+
+			auto it = gasNetwork.getAdjacencyList().find(u);
+			if (it != gasNetwork.getAdjacencyList().end()) {
+				for (const auto& conn : it->second) {
+					if (conn.destinationCS == v) {
+						auto pipeIt = pipes.find(conn.pipeID);
+						if (pipeIt != pipes.end()) {
+							std::cout << "  –ö–° " << u << " -> –ö–° " << v
+								<< ": –¢—Ä—É–±–∞ ID " << conn.pipeID
+								<< " (" << pipeIt->second.getName() << ")"
+								<< ", –¥–ª–∏–Ω–∞: " << pipeIt->second.getLength() << " –∫–º"
+								<< ", –¥–∏–∞–º–µ—Ç—Ä: " << pipeIt->second.getDiameter() << " –º–º"
+								<< ", –ø—Ä–æ–∏–∑–≤–æ–¥–∏—Ç–µ–ª—å–Ω–æ—Å—Ç—å: " << gasNetwork.getPipePerformance(conn.pipeID) << " –º¬≥/—á"
+								<< ", —Å—Ç–∞—Ç—É—Å: " << (pipeIt->second.getStatus() ? "–≤ —Ä–µ–º–æ–Ω—Ç–µ" : "—Ä–∞–±–æ—Ç–∞–µ—Ç")
+								<< std::endl;
+						}
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	std::cout << "\n–ù–∞–∂–º–∏—Ç–µ Enter –¥–ª—è –ø—Ä–æ–¥–æ–ª–∂–µ–Ω–∏—è...";
 	std::cin.ignore(1000, '\n');
 	while (std::cin.get() != '\n');
 }

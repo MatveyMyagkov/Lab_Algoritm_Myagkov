@@ -24,10 +24,12 @@ void ShowMenu() {
         std::cout << "12. Показать газотранспортную сеть" << std::endl; 
         std::cout << "13. Отключить трубу от сети" << std::endl;
         std::cout << "14. Топологическая сортировка сети" << std::endl;
+        std::cout << "15. Расчет максимального потока между КС" << std::endl;
+        std::cout << "16. Поиск кратчайшего пути между КС" << std::endl;
         std::cout << "0. Выход" << std::endl;
         std::cout << "Выберите действие: ";
 
-        while (!(std::cin >> options) || options < 0 || options > 14 || std::cin.peek() != '\n') {
+        while (!(std::cin >> options) || options < 0 || options > 16 || std::cin.peek() != '\n') {
             std::cout << "Ошибка! Введите число от 0 до 14: ";
             std::cin.clear();
             while (std::cin.get() != '\n');
@@ -79,6 +81,12 @@ void ShowMenu() {
             break;
         case 14:
             TopologicalSort();
+            break;
+        case 15:
+            CalculateMaxFlow();
+            break;
+        case 16:
+            FindShortestPath();
             break;
         }
     }

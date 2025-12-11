@@ -1,5 +1,5 @@
 #include "Pipe.h"
-
+#include "Network.h"
 Pipe::Pipe() : id(0), name(""), length(0.0f), diameter(0), status(false) {}
 
 Pipe::Pipe(int i, std::string n, float len, int diam, bool stat)
@@ -65,10 +65,23 @@ void Pipe::inputFromConsole() {
     logKeyboardInput(std::to_string(length));
     setLength(length);
 
-    std::cout << "Введите диаметр трубы (мм): ";
+    const std::vector<int> allowedDiameters = { 500, 700, 1000, 1400 };
+
+    std::cout << "Введите диаметр трубы (мм). Допустимые значения: ";
+    for (size_t i = 0; i < allowedDiameters.size(); i++) {
+        std::cout << allowedDiameters[i];
+        if (i < allowedDiameters.size() - 1) {
+            std::cout << ", ";
+        }
+    }
+    std::cout << ": ";
+
     int diameter;
-    while (!(std::cin >> diameter) || diameter <= 0 || std::cin.peek() != '\n') {
-        std::cout << "Ошибка! Введите положительное целое число: ";
+    while (!(std::cin >> diameter) || diameter <= 0 || std::cin.peek() != '\n' ||
+        std::find(allowedDiameters.begin(), allowedDiameters.end(), diameter) == allowedDiameters.end()) {
+        std::cout << "Ошибка! Введите один из допустимых диаметров: ";
+        for (int d : allowedDiameters) std::cout << d << " ";
+        std::cout << "мм: ";
         std::cin.clear();
         std::cin.ignore(1000, '\n');
         logKeyboardInput(std::to_string(diameter));
